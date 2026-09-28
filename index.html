@@ -2,677 +2,816 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<title>For Babyyy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>for babyyy ♡</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@400;500&display=swap');
-
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html,body{
-  margin:0;
-  width:100%;
-  height:100%;
-  overflow:hidden;
-  background:#090b16;
-  font-family:"DM Sans",sans-serif;
-  color:#fff;
+:root {
+  --cream: #f8f1e7;
+  --warm: #ead8c5;
+  --brown: #6d5140;
+  --dark: #382b25;
+  --pink: #d99aa5;
+  --soft-pink: #efd0d3;
+  --green: #9caf91;
+  --shadow: rgba(70, 45, 35, 0.18);
 }
 
-button{
-  font:inherit;
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--cream);
+  color: var(--dark);
+  font-family: Georgia, "Times New Roman", serif;
 }
 
-#app{
-  width:100%;
-  height:100%;
-  position:relative;
-  overflow:hidden;
+button {
+  font-family: inherit;
 }
 
-/* ---------------- INTRO ---------------- */
+/* =========================
+   INTRO
+========================= */
 
-#intro{
-  position:absolute;
-  inset:0;
-  z-index:100;
+#intro {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background:
-    radial-gradient(circle at 50% 40%,#252946 0%,#111426 42%,#080a13 100%);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transition:opacity 1.2s ease, visibility 1.2s ease;
+    radial-gradient(circle at 50% 40%, #fffaf3 0%, #f5e9dc 55%, #ead7c3 100%);
+  transition: opacity 1.2s ease, visibility 1.2s ease;
 }
 
-.intro-content{
-  text-align:center;
-  padding:30px;
+#intro.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
-.intro-heart{
-  font-size:48px;
-  opacity:.9;
-  animation:heartbeat 2s infinite;
+.intro-content {
+  text-align: center;
+  animation: fadeUp 1.4s ease;
 }
 
-.intro-small{
-  margin-top:22px;
-  font-size:11px;
-  letter-spacing:4px;
-  text-transform:uppercase;
-  opacity:.4;
+.intro-heart {
+  font-size: 38px;
+  margin-bottom: 25px;
+  animation: heartbeat 2s infinite;
 }
 
-.intro-content button{
-  margin-top:35px;
-  padding:13px 27px;
-  border:1px solid rgba(255,255,255,.22);
-  background:rgba(255,255,255,.06);
-  color:white;
-  border-radius:30px;
-  letter-spacing:2px;
-  font-size:11px;
-  cursor:pointer;
+.intro-title {
+  font-size: clamp(34px, 8vw, 62px);
+  font-weight: normal;
+  letter-spacing: 2px;
+  color: #4b372d;
+  margin-bottom: 35px;
 }
 
-#intro.hide{
-  opacity:0;
-  visibility:hidden;
+.enter-btn {
+  border: 1px solid rgba(90, 65, 50, 0.25);
+  background: rgba(255,255,255,0.45);
+  color: var(--brown);
+  padding: 13px 30px;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: .3s ease;
+  backdrop-filter: blur(8px);
 }
 
-@keyframes heartbeat{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.08)}
+.enter-btn:hover {
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--shadow);
 }
 
-/* ---------------- ROOM ---------------- */
+/* =========================
+   MAIN
+========================= */
 
-#room{
-  position:absolute;
-  inset:0;
-  overflow:hidden;
+#world {
+  min-height: 100vh;
+  display: none;
+  position: relative;
+  overflow: hidden;
+}
+
+#world.show {
+  display: block;
+  animation: fadeIn 1.2s ease;
+}
+
+.room {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
   background:
-    linear-gradient(to bottom,#0d1125 0%,#17192d 55%,#201d27 100%);
-}
-
-/* Window */
-
-.window{
-  position:absolute;
-  top:7%;
-  left:50%;
-  transform:translateX(-50%);
-  width:min(68vw,360px);
-  height:43vh;
-  max-height:430px;
-  min-height:280px;
-  border:8px solid #272433;
-  border-radius:7px;
-  background:
-    radial-gradient(circle at 70% 25%,rgba(255,255,255,.35) 0 1px,transparent 2px),
-    radial-gradient(circle at 20% 65%,rgba(255,255,255,.2) 0 1px,transparent 2px),
-    linear-gradient(#080d20,#151934 70%,#101328);
-  box-shadow:
-    0 0 0 2px rgba(255,255,255,.03),
-    0 20px 50px rgba(0,0,0,.4);
-}
-
-.window:before{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:0;
-  width:4px;
-  height:100%;
-  background:#272433;
-}
-
-.window:after{
-  content:"";
-  position:absolute;
-  left:0;
-  top:55%;
-  width:100%;
-  height:4px;
-  background:#272433;
-}
-
-.moon{
-  position:absolute;
-  width:65px;
-  height:65px;
-  right:13%;
-  top:13%;
-  border-radius:50%;
-  background:#eee9cf;
-  box-shadow:0 0 30px rgba(255,245,200,.2);
-}
-
-/* Floor */
-
-.floor{
-  position:absolute;
-  left:-10%;
-  right:-10%;
-  bottom:-4%;
-  height:38%;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #25222c 0px,
-      #25222c 75px,
-      #211e27 76px,
-      #211e27 150px
+    linear-gradient(
+      to bottom,
+      #d9c8ba 0%,
+      #e8d9cc 58%,
+      #c7ae98 58%,
+      #b9987d 100%
     );
-  transform:perspective(500px) rotateX(6deg);
 }
 
-/* Wall shadow */
+/* window */
 
-.wall-shadow{
-  position:absolute;
-  bottom:25%;
-  left:0;
-  width:100%;
-  height:20%;
-  background:linear-gradient(transparent,rgba(0,0,0,.16));
+.window {
+  position: absolute;
+  width: 31vw;
+  height: 34vh;
+  max-width: 360px;
+  min-width: 230px;
+  top: 8vh;
+  left: 8vw;
+  border: 12px solid #765b4a;
+  background: linear-gradient(#263343, #53677b);
+  box-shadow: 0 12px 35px rgba(40,25,20,.2);
 }
 
-/* Bed */
-
-.bed{
-  position:absolute;
-  bottom:17%;
-  left:50%;
-  transform:translateX(-50%);
-  width:min(92vw,520px);
-  height:31%;
-  min-height:190px;
+.window::before,
+.window::after {
+  content: "";
+  position: absolute;
+  background: rgba(255,255,255,.15);
 }
 
-.headboard{
-  position:absolute;
-  top:0;
-  left:7%;
-  width:86%;
-  height:55%;
-  border-radius:16px 16px 5px 5px;
-  background:#39323a;
-  box-shadow:0 10px 20px rgba(0,0,0,.3);
+.window::before {
+  width: 8px;
+  height: 100%;
+  left: 50%;
+  top: 0;
 }
 
-.mattress{
-  position:absolute;
-  bottom:8%;
-  left:0;
-  width:100%;
-  height:45%;
-  border-radius:25px;
-  background:#c4b8b3;
-  box-shadow:0 15px 25px rgba(0,0,0,.35);
+.window::after {
+  height: 8px;
+  width: 100%;
+  top: 50%;
+  left: 0;
 }
 
-.blanket{
-  position:absolute;
-  bottom:4%;
-  right:1%;
-  width:63%;
-  height:42%;
-  border-radius:30px 25px 20px 20px;
-  background:#8d7e89;
-  transform:rotate(-1deg);
+.moon {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: #fff7d5;
+  top: 23%;
+  left: 65%;
+  box-shadow: 0 0 35px rgba(255,242,190,.65);
 }
 
-/* Pillows */
-
-.pillow{
-  position:absolute;
-  top:27%;
-  width:31%;
-  height:28%;
-  background:#ddd3cd;
-  border-radius:30px;
-  box-shadow:inset 0 -6px 10px rgba(0,0,0,.08);
+.star {
+  position: absolute;
+  color: #fff8d8;
+  font-size: 10px;
+  animation: twinkle 3s infinite alternate;
 }
 
-.pillow.left{
-  left:14%;
-  transform:rotate(-4deg);
+.star.s1 { top: 17%; left: 20%; }
+.star.s2 { top: 68%; left: 25%; animation-delay: 1s; }
+.star.s3 { top: 34%; left: 82%; animation-delay: .5s; }
+.star.s4 { top: 75%; left: 72%; animation-delay: 1.5s; }
+
+/* bed */
+
+.bed {
+  position: absolute;
+  width: 57vw;
+  max-width: 650px;
+  min-width: 330px;
+  height: 25vh;
+  min-height: 180px;
+  left: 50%;
+  bottom: 7vh;
+  transform: translateX(-50%);
 }
 
-.pillow.right{
-  left:39%;
-  transform:rotate(3deg);
+.headboard {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 70%;
+  border-radius: 22px 22px 8px 8px;
+  background: #765746;
+  box-shadow: 0 12px 25px rgba(50,30,20,.2);
 }
 
-/* ---------------- OBJECTS ---------------- */
-
-.object{
-  position:absolute;
-  border:0;
-  background:transparent;
-  cursor:pointer;
-  color:white;
-  z-index:20;
-  transition:transform .25s ease;
-  filter:drop-shadow(0 8px 8px rgba(0,0,0,.3));
+.mattress {
+  position: absolute;
+  width: 95%;
+  height: 52%;
+  left: 2.5%;
+  bottom: 4%;
+  border-radius: 20px;
+  background: #f5e9dc;
+  box-shadow: 0 12px 25px rgba(55,35,25,.18);
 }
 
-.object:active{
-  transform:scale(.92);
+.blanket {
+  position: absolute;
+  width: 58%;
+  height: 48%;
+  right: 3%;
+  bottom: 7%;
+  border-radius: 20px;
+  background: #d7b8aa;
+  transform: rotate(-1deg);
 }
 
-.object .emoji{
-  display:block;
-  font-size:38px;
+/* pillow */
+
+.pillow {
+  position: absolute;
+  width: 25%;
+  height: 38%;
+  left: 7%;
+  bottom: 13%;
+  border-radius: 20px;
+  background: #fffaf2;
+  box-shadow: inset 0 -5px 10px rgba(80,50,40,.08);
 }
 
-.object .hint{
-  display:block;
-  margin-top:3px;
-  font-size:9px;
-  letter-spacing:1px;
-  opacity:0;
-  transition:opacity .3s;
+/* bedside table */
+
+.table {
+  position: absolute;
+  width: 120px;
+  height: 105px;
+  bottom: 17vh;
+  right: 7vw;
+  background: #765746;
+  border-radius: 8px;
+  box-shadow: 0 15px 30px rgba(50,30,20,.2);
 }
 
-.object:hover .hint{
-  opacity:.45;
+.table::after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 75px;
+  background: #5f4637;
+  left: 20px;
+  top: 90px;
+  box-shadow: 65px 0 #5f4637;
+}
+
+/* floor */
+
+.rug {
+  position: absolute;
+  width: 55vw;
+  height: 13vh;
+  bottom: 1vh;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #bda08a;
+  border-radius: 50%;
+  opacity: .65;
+}
+
+/* =========================
+   OBJECTS
+========================= */
+
+.object {
+  position: absolute;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: transform .3s ease, filter .3s ease;
+  z-index: 10;
+}
+
+.object:hover {
+  transform: scale(1.08);
+  filter: brightness(1.08);
+}
+
+.object-label {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 7px);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 11px;
+  color: rgba(65,45,35,.55);
+  opacity: 0;
+  transition: .3s;
+  pointer-events: none;
+}
+
+.object:hover .object-label {
+  opacity: 1;
 }
 
 /* Riee */
 
-.riee{
-  left:22%;
-  bottom:29%;
-  z-index:30;
+.riee {
+  left: 43%;
+  bottom: 20%;
+  font-size: 70px;
+  animation: breathe 4s ease-in-out infinite;
 }
 
-.riee .emoji{
-  font-size:61px;
-  animation:breathing 3s ease-in-out infinite;
+/* matcha */
+
+.matcha {
+  right: 12px;
+  top: 20px;
+  font-size: 43px;
 }
 
-@keyframes breathing{
-  0%,100%{transform:translateY(0) scale(1)}
-  50%{transform:translateY(2px) scale(1.02)}
+/* moon lamp */
+
+.moonlamp {
+  right: 7vw;
+  top: 12vh;
+  font-size: 53px;
 }
 
-/* Matcha */
+/* flowers */
 
-.matcha{
-  left:7%;
-  bottom:22%;
+.flowers {
+  left: 7vw;
+  bottom: 20vh;
+  font-size: 56px;
 }
 
-/* Moon lamp */
+/* headphones */
 
-.lamp{
-  right:7%;
-  bottom:29%;
-}
-
-.lamp .emoji{
-  font-size:42px;
-}
-
-/* Flowers */
-
-.flowers{
-  right:7%;
-  top:50%;
-}
-
-/* Headphones */
-
-.headphones{
-  left:7%;
-  top:51%;
+.headphones {
+  left: 21vw;
+  bottom: 19vh;
+  font-size: 49px;
 }
 
 /* CD */
 
-.cd{
-  right:24%;
-  bottom:20%;
+.cd {
+  right: 23vw;
+  bottom: 18vh;
+  font-size: 49px;
 }
 
-.cd .emoji{
-  font-size:43px;
+/* tape */
+
+.tape {
+  right: 35vw;
+  bottom: 18vh;
+  font-size: 43px;
 }
 
-/* Cat */
+/* cat */
 
-.cat{
-  right:10%;
-  bottom:12%;
+.cat {
+  left: 15vw;
+  bottom: 8vh;
+  font-size: 55px;
+  animation: catBreath 4s ease-in-out infinite;
 }
 
-.cat .emoji{
-  font-size:48px;
+/* cat item */
+
+.cat-item {
+  left: 5vw;
+  bottom: 9vh;
+  font-size: 43px;
 }
 
-/* Cat item */
+/* =========================
+   PROGRESS
+========================= */
 
-.cat-item{
-  left:27%;
-  bottom:11%;
+.progress {
+  position: fixed;
+  top: 18px;
+  right: 20px;
+  z-index: 50;
+  font-size: 11px;
+  color: rgba(60,40,30,.45);
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: .5s;
 }
 
-.cat-item .emoji{
-  font-size:31px;
+.progress.visible {
+  opacity: 1;
 }
 
-/* Tape */
+/* =========================
+   MODAL
+========================= */
 
-.tape{
-  left:50%;
-  top:51%;
-  transform:translateX(-50%);
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  background: rgba(40,27,21,.28);
+  backdrop-filter: blur(7px);
+  opacity: 0;
+  visibility: hidden;
+  transition: .4s ease;
 }
 
-.tape .emoji{
-  font-size:37px;
+.modal.open {
+  opacity: 1;
+  visibility: visible;
 }
 
-/* ---------------- HUD ---------------- */
-
-.room-title{
-  position:absolute;
-  top:20px;
-  left:22px;
-  z-index:50;
-  font-family:"Playfair Display",serif;
-  font-size:17px;
-  font-style:italic;
-  opacity:.55;
+.modal-card {
+  position: relative;
+  width: min(520px, 94vw);
+  max-height: 82vh;
+  overflow-y: auto;
+  padding: 42px 35px 35px;
+  border-radius: 25px;
+  background: rgba(255,250,243,.97);
+  box-shadow: 0 25px 70px rgba(50,30,20,.25);
+  text-align: center;
+  animation: modalUp .5s ease;
 }
 
-.progress{
-  position:absolute;
-  top:23px;
-  right:22px;
-  z-index:50;
-  width:42px;
-  height:4px;
-  border-radius:5px;
-  background:rgba(255,255,255,.1);
-  overflow:hidden;
+.close {
+  position: absolute;
+  right: 17px;
+  top: 13px;
+  border: 0;
+  background: transparent;
+  font-size: 22px;
+  color: #806757;
+  cursor: pointer;
 }
 
-.progress-fill{
-  height:100%;
-  width:0%;
-  background:rgba(255,255,255,.7);
-  transition:width .5s ease;
+.modal-icon {
+  font-size: 43px;
+  margin-bottom: 20px;
 }
 
-/* ---------------- MESSAGE MODAL ---------------- */
-
-#message{
-  position:absolute;
-  inset:0;
-  z-index:80;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:28px;
-  background:rgba(4,5,12,.56);
-  backdrop-filter:blur(9px);
-  opacity:0;
-  visibility:hidden;
-  transition:.4s ease;
+.modal-title {
+  font-size: 25px;
+  font-weight: normal;
+  margin-bottom: 17px;
+  color: #523d31;
 }
 
-#message.show{
-  opacity:1;
-  visibility:visible;
+.modal-text {
+  font-size: 16px;
+  line-height: 1.85;
+  color: #665047;
 }
 
-.message-card{
-  width:min(100%,390px);
-  padding:35px 27px 30px;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:25px;
-  background:rgba(25,25,40,.84);
-  box-shadow:0 25px 70px rgba(0,0,0,.45);
-  text-align:center;
-  transform:translateY(20px);
-  transition:.5s ease;
+.music-card {
+  margin-top: 25px;
 }
 
-#message.show .message-card{
-  transform:translateY(0);
+.music-btn {
+  border: 0;
+  padding: 13px 24px;
+  border-radius: 30px;
+  background: #765746;
+  color: white;
+  cursor: pointer;
+  transition: .3s;
 }
 
-.message-symbol{
-  font-size:35px;
-  margin-bottom:20px;
+.music-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(80,50,35,.2);
 }
 
-.message-text{
-  font-family:"Playfair Display",serif;
-  font-size:19px;
-  line-height:1.65;
-  color:#eee9e6;
+/* =========================
+   FINAL
+========================= */
+
+#final {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: #08070b;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.5s ease;
+  overflow: hidden;
 }
 
-.close{
-  margin-top:25px;
-  border:0;
-  background:rgba(255,255,255,.07);
-  color:white;
-  padding:10px 21px;
-  border-radius:20px;
-  font-size:10px;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
+#final.show {
+  opacity: 1;
+  visibility: visible;
 }
 
-/* ---------------- MUSIC PLAYER ---------------- */
-
-.music-card{
-  margin-top:22px;
+.final-content {
+  position: relative;
+  z-index: 5;
+  width: min(700px, 90vw);
+  padding: 25px;
+  animation: finalAppear 3s ease;
 }
 
-.music-btn{
-  border:1px solid rgba(255,255,255,.15);
-  background:rgba(255,255,255,.07);
-  color:white;
-  padding:12px 18px;
-  border-radius:22px;
-  font-size:11px;
-  cursor:pointer;
+.final-message {
+  font-size: clamp(19px, 3vw, 27px);
+  line-height: 1.8;
+  font-weight: normal;
+  color: #fffaf4;
 }
 
-.music-btn:active{
-  transform:scale(.96);
-}
-
-/* ---------------- FINAL ---------------- */
-
-#final{
-  position:absolute;
-  inset:0;
-  z-index:200;
-  background:
-    linear-gradient(
-      to bottom,
-      #080b1a 0%,
-      #12172c 50%,
-      #211a29 100%
-    );
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  opacity:0;
-  visibility:hidden;
-  transition:opacity 1.5s ease;
-  overflow:hidden;
-}
-
-#final.show{
-  opacity:1;
-  visibility:visible;
-}
-
-/* stars */
-
-.star{
-  position:absolute;
-  width:2px;
-  height:2px;
-  background:white;
-  border-radius:50%;
-  opacity:.5;
+.final-signature {
+  margin-top: 30px;
+  font-size: 15px;
+  letter-spacing: 2px;
+  color: #d9c3b5;
 }
 
 /* fireworks */
 
-.firework{
-  position:absolute;
-  width:4px;
-  height:4px;
-  border-radius:50%;
-  background:white;
-  opacity:0;
+.firework {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  animation: firework 3s infinite;
 }
 
-.firework:before,
-.firework:after{
-  content:"";
-  position:absolute;
-  inset:-45px;
-  background:
-    radial-gradient(circle at 50% 0,white 0 2px,transparent 3px),
-    radial-gradient(circle at 100% 50%,white 0 2px,transparent 3px),
-    radial-gradient(circle at 50% 100%,white 0 2px,transparent 3px),
-    radial-gradient(circle at 0 50%,white 0 2px,transparent 3px),
-    radial-gradient(circle at 15% 15%,white 0 2px,transparent 3px),
-    radial-gradient(circle at 85% 15%,white 0 2px,transparent 3px),
-    radial-gradient(circle at 15% 85%,white 0 2px,transparent 3px),
-    radial-gradient(circle at 85% 85%,white 0 2px,transparent 3px);
-  border-radius:50%;
+.firework::before,
+.firework::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  box-shadow:
+    0 -70px #fff,
+    35px -60px #fff,
+    60px -35px #fff,
+    70px 0 #fff,
+    60px 35px #fff,
+    35px 60px #fff,
+    0 70px #fff,
+    -35px 60px #fff,
+    -60px 35px #fff,
+    -70px 0 #fff,
+    -60px -35px #fff,
+    -35px -60px #fff;
 }
 
-.firework.one{
-  left:20%;
-  top:23%;
-  animation:burst 4s infinite;
+.firework::after {
+  transform: rotate(22deg);
+  opacity: .65;
 }
 
-.firework.two{
-  right:18%;
-  top:31%;
-  animation:burst 4s 1.4s infinite;
+.f1 {
+  left: 18%;
+  top: 24%;
+  animation-delay: .3s;
 }
 
-.firework.three{
-  left:55%;
-  top:15%;
-  animation:burst 4s 2.6s infinite;
+.f2 {
+  left: 78%;
+  top: 25%;
+  animation-delay: 1.4s;
 }
 
-@keyframes burst{
-  0%,45%{
-    opacity:0;
-    transform:scale(.1);
+.f3 {
+  left: 28%;
+  top: 70%;
+  animation-delay: 2.1s;
+}
+
+.f4 {
+  left: 73%;
+  top: 68%;
+  animation-delay: 1s;
+}
+
+.f5 {
+  left: 50%;
+  top: 15%;
+  animation-delay: 2.6s;
+}
+
+/* comet */
+
+.comet {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  border: 0;
+  background: transparent;
+  color: rgba(255,250,240,.45);
+  font-size: 25px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: .6s;
+}
+
+.comet.show {
+  opacity: 1;
+  visibility: visible;
+  animation: cometFloat 2s infinite ease-in-out;
+}
+
+.comet:hover {
+  color: white;
+  transform: translateX(-50%) scale(1.2);
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  55%{
-    opacity:1;
-    transform:scale(1);
-  }
-  70%{
-    opacity:.8;
-    transform:scale(1.4);
-  }
-  100%{
-    opacity:0;
-    transform:scale(1.8);
-  }
-}
-
-.final-content{
-  position:relative;
-  z-index:5;
-  width:min(88%,480px);
-  text-align:center;
-  margin-top:8vh;
-}
-
-.final-small{
-  font-size:10px;
-  letter-spacing:4px;
-  text-transform:uppercase;
-  opacity:.45;
-  margin-bottom:25px;
-}
-
-.final-message{
-  font-family:"Playfair Display",serif;
-  font-size:clamp(22px,6vw,31px);
-  line-height:1.65;
-  font-style:italic;
-  color:#f0e9e6;
-  text-shadow:0 5px 25px rgba(0,0,0,.5);
-}
-
-.final-sign{
-  margin-top:30px;
-  font-size:12px;
-  letter-spacing:2px;
-  opacity:.55;
-}
-
-/* Riee final */
-
-.final-riee{
-  position:absolute;
-  bottom:8%;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:52px;
-  opacity:.8;
-}
-
-/* ---------------- RESPONSIVE ---------------- */
-
-@media(max-height:650px){
-  .window{
-    top:4%;
-    height:40vh;
-  }
-
-  .bed{
-    bottom:13%;
-    height:30%;
-  }
-
-  .object .emoji{
-    font-size:31px;
-  }
-
-  .riee .emoji{
-    font-size:51px;
-  }
-
-  .riee{
-    bottom:27%;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media(min-width:700px){
-  .object .emoji{
-    font-size:44px;
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.13); }
+  30% { transform: scale(1); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-5px) rotate(2deg); }
+}
+
+@keyframes catBreath {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@keyframes twinkle {
+  from { opacity: .3; transform: scale(.8); }
+  to { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes modalUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes finalAppear {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes firework {
+  0% {
+    opacity: 0;
+    transform: scale(.2);
+  }
+  15% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: .8;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes cometFloat {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+  .window {
+    width: 43vw;
+    height: 25vh;
+    left: 5vw;
+    top: 7vh;
   }
 
-  .riee .emoji{
-    font-size:68px;
+  .moonlamp {
+    right: 8vw;
+    top: 10vh;
+  }
+
+  .table {
+    right: 4vw;
+    bottom: 24vh;
+    transform: scale(.8);
+  }
+
+  .bed {
+    width: 82vw;
+    bottom: 14vh;
+  }
+
+  .riee {
+    left: 41%;
+    bottom: 23%;
+    font-size: 58px;
+  }
+
+  .flowers {
+    left: 3vw;
+    bottom: 25vh;
+    font-size: 45px;
+  }
+
+  .headphones {
+    left: 17vw;
+    bottom: 24vh;
+    font-size: 39px;
+  }
+
+  .cd {
+    right: 17vw;
+    bottom: 23vh;
+    font-size: 40px;
+  }
+
+  .tape {
+    right: 35vw;
+    bottom: 25vh;
+    font-size: 36px;
+  }
+
+  .cat {
+    left: 7vw;
+    bottom: 8vh;
+    font-size: 48px;
+  }
+
+  .cat-item {
+    left: 2vw;
+    bottom: 9vh;
+    font-size: 37px;
+  }
+
+  .modal-card {
+    padding: 38px 23px 27px;
+  }
+
+  .modal-text {
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  .final-message {
+    font-size: 18px;
+    line-height: 1.75;
   }
 }
 </style>
@@ -680,577 +819,605 @@ button{
 
 <body>
 
-<div id="app">
+<!-- =========================
+     INTRO
+========================= -->
 
-  <!-- INTRO -->
-  <section id="intro">
-    <div class="intro-content">
-      <div class="intro-heart">♡</div>
-      <div class="intro-small">something for babyyy</div>
-      <button onclick="enterRoom()">enter</button>
-    </div>
-  </section>
+<section id="intro">
+  <div class="intro-content">
+    <div class="intro-heart">♡</div>
+    <h1 class="intro-title">for babyyy</h1>
+    <button class="enter-btn" onclick="enterWorld()">
+      come in
+    </button>
+  </div>
+</section>
 
 
-  <!-- BEDROOM -->
-  <main id="room">
+<!-- =========================
+     BEDROOM
+========================= -->
 
-    <div class="room-title">for babyyy</div>
+<main id="world">
 
-    <div class="progress">
-      <div class="progress-fill" id="progressFill"></div>
-    </div>
+  <div class="room">
 
     <div class="window">
       <div class="moon"></div>
+      <span class="star s1">✦</span>
+      <span class="star s2">✦</span>
+      <span class="star s3">✦</span>
+      <span class="star s4">✦</span>
     </div>
 
-    <div class="wall-shadow"></div>
-
-    <div class="floor"></div>
+    <div class="rug"></div>
 
     <div class="bed">
       <div class="headboard"></div>
-      <div class="pillow left"></div>
-      <div class="pillow right"></div>
       <div class="mattress"></div>
       <div class="blanket"></div>
+      <div class="pillow"></div>
+
+      <!-- RIEE -->
+      <button
+        class="object riee"
+        onclick="openObject('riee')"
+        aria-label="Riee"
+      >
+        🧸
+        <span class="object-label">Riee</span>
+      </button>
     </div>
 
+    <!-- BEDSIDE TABLE -->
 
-    <!-- RIEE -->
-    <button class="object riee" onclick="showMessage('riee')">
-      <span class="emoji">🧸</span>
-      <span class="hint">sleepy</span>
-    </button>
+    <div class="table">
 
+      <button
+        class="object matcha"
+        onclick="openObject('matcha')"
+        aria-label="matcha"
+      >
+        🍵
+        <span class="object-label">matcha</span>
+      </button>
 
-    <!-- MATCHA -->
-    <button class="object matcha" onclick="showMessage('matcha')">
-      <span class="emoji">🍵</span>
-      <span class="hint">matcha</span>
-    </button>
-
+    </div>
 
     <!-- MOON LAMP -->
-    <button class="object lamp" onclick="showMessage('lamp')">
-      <span class="emoji">🌙</span>
-      <span class="hint">moon</span>
-    </button>
 
+    <button
+      class="object moonlamp"
+      onclick="openObject('moonlamp')"
+      aria-label="moon lamp"
+    >
+      🌙
+      <span class="object-label">moon lamp</span>
+    </button>
 
     <!-- FLOWERS -->
-    <button class="object flowers" onclick="showMessage('flowers')">
-      <span class="emoji">🌷</span>
-      <span class="hint">flowers</span>
-    </button>
 
+    <button
+      class="object flowers"
+      onclick="openObject('flowers')"
+      aria-label="flowers"
+    >
+      💐
+      <span class="object-label">flowers</span>
+    </button>
 
     <!-- HEADPHONES -->
-    <button class="object headphones" onclick="showMessage('headphones')">
-      <span class="emoji">🎧</span>
-      <span class="hint">listen</span>
-    </button>
 
+    <button
+      class="object headphones"
+      onclick="openObject('headphones')"
+      aria-label="headphones"
+    >
+      🎧
+      <span class="object-label">headphones</span>
+    </button>
 
     <!-- CD -->
-    <button class="object cd" onclick="showMessage('cd')">
-      <span class="emoji">💿</span>
-      <span class="hint">play</span>
-    </button>
 
+    <button
+      class="object cd"
+      onclick="openObject('cd')"
+      aria-label="CD"
+    >
+      💿
+      <span class="object-label">a song</span>
+    </button>
 
     <!-- TAPE -->
-    <button class="object tape" onclick="showMessage('tape')">
-      <span class="emoji">📼</span>
-      <span class="hint">voice</span>
-    </button>
 
+    <button
+      class="object tape"
+      onclick="openObject('tape')"
+      aria-label="voice tape"
+    >
+      📼
+      <span class="object-label">a little tape</span>
+    </button>
 
     <!-- CAT -->
-    <button class="object cat" onclick="showMessage('cat')">
-      <span class="emoji">🐈</span>
-      <span class="hint">here</span>
-    </button>
 
+    <button
+      class="object cat"
+      onclick="openObject('cat')"
+      aria-label="cat"
+    >
+      🐈
+      <span class="object-label">our little world</span>
+    </button>
 
     <!-- CAT ITEM -->
-    <button class="object cat-item" onclick="showMessage('catitem')">
-      <span class="emoji">🐾</span>
-      <span class="hint">little things</span>
+
+    <button
+      class="object cat-item"
+      onclick="openObject('catitem')"
+      aria-label="cat item"
+    >
+      🐾
+      <span class="object-label">little things</span>
     </button>
 
-  </main>
+  </div>
+
+</main>
 
 
-  <!-- MESSAGE MODAL -->
-  <section id="message">
+<!-- =========================
+     PROGRESS
+========================= -->
 
-    <div class="message-card">
+<div class="progress" id="progress">
+  <span id="progressCount">0</span> / 9
+</div>
 
-      <div class="message-symbol" id="messageSymbol">♡</div>
-
-      <div class="message-text" id="messageText"></div>
-
-      <div id="extraContent"></div>
-
-      <button class="close" onclick="closeMessage()">stay awhile</button>
-
-    </div>
-
-  </section>
+<button
+  class="comet"
+  id="comet"
+  onclick="showFinal()"
+  aria-label="go to the ending"
+>
+  ☄
+</button>
 
 
-  <!-- FINAL -->
-  <section id="final">
+<!-- =========================
+     MODAL
+========================= -->
 
-    <div class="star" style="left:8%;top:12%"></div>
-    <div class="star" style="left:16%;top:35%"></div>
-    <div class="star" style="left:31%;top:9%"></div>
-    <div class="star" style="left:42%;top:27%"></div>
-    <div class="star" style="left:58%;top:8%"></div>
-    <div class="star" style="left:72%;top:20%"></div>
-    <div class="star" style="left:88%;top:12%"></div>
-    <div class="star" style="left:81%;top:45%"></div>
-    <div class="star" style="left:10%;top:61%"></div>
+<div class="modal" id="modal">
 
-    <div class="firework one"></div>
-    <div class="firework two"></div>
-    <div class="firework three"></div>
+  <div class="modal-card">
 
-    <div class="final-content">
+    <button
+      class="close"
+      onclick="closeModal()"
+      aria-label="close"
+    >
+      ×
+    </button>
 
-      <div class="final-small">our someday</div>
+    <div class="modal-icon" id="modalIcon"></div>
 
-      <div class="final-message">
-        Hello baby, please know that not every part of me is perfect
-        and sometimes I'll get tired too.<br><br>
+    <h2 class="modal-title" id="modalTitle"></h2>
 
-        But remember that my love for you will always stay.
-        Alam kong alam mo na mahal na mahal kita.
-        We don't need to figure it out all at once.
-        Let's do it one step at a time.<br><br>
+    <div class="modal-text" id="modalText"></div>
 
-        Hold my hand and let's reach our someday.
-      </div>
+    <div id="modalExtra"></div>
 
-      <div class="final-sign">
-        always, yours
-      </div>
-
-    </div>
-
-    <div class="final-riee">🧸</div>
-
-  </section>
+  </div>
 
 </div>
 
 
-<!-- AUDIO -->
+<!-- =========================
+     FINAL
+========================= -->
 
-<audio
-  id="somdayAudio"
-  preload="none">
-</audio>
+<section id="final">
 
-<audio
-  id="voiceAudio"
-  preload="none">
-</audio>
+  <div class="firework f1"></div>
+  <div class="firework f2"></div>
+  <div class="firework f3"></div>
+  <div class="firework f4"></div>
+  <div class="firework f5"></div>
+
+  <div class="final-content">
+
+    <div class="final-message">
+
+      Hello baby, please know that not every part of me is perfect
+      and sometimes I'll get tired too.
+
+      <br><br>
+
+      But remember that my love for you will always stay.
+      Alam kong alam mo na mahal na mahal kita.
+
+      <br><br>
+
+      We don't need to figure it out all at once.
+      Let's do it one step at a time.
+
+      <br><br>
+
+      Hold my hand and let's reach our someday.
+
+    </div>
+
+    <div class="final-signature">
+      always, for you ♡
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     AUDIO
+========================= -->
+
+<audio id="somdayAudio" preload="none"></audio>
+
+<audio id="voiceAudio" preload="none"></audio>
 
 
 <script>
 
-/* --------------------------------
-   STATE
--------------------------------- */
-
-let discovered = new Set();
-
-const totalObjects = 9;
-
-
-/* --------------------------------
-   ENTER
--------------------------------- */
-
-function enterRoom(){
-
-  document.getElementById("intro").classList.add("hide");
-
-}
-
-
-/* --------------------------------
-   MESSAGES
--------------------------------- */
-
-const messages = {
-
-  riee:{
-    symbol:"🧸",
-    text:
-    `*stretches a little*<br><br>
-    "baho ng tatay ko, 'di pa yan naligo"<br><br>
-    ...and somehow, you still hug him anyway.`
-  },
-
-  matcha:{
-    symbol:"🍵",
-    text:
-    `I think I'd choose a quiet little moment with you over anything grand.<br><br>
-    Just matcha. You beside me. No pressure to be anything else.`
-  },
-
-  lamp:{
-    symbol:"☾",
-    text:
-    `You don't always have to have everything figured out.<br><br>
-    Sometimes you can just rest.<br>
-    I'll stay.`
-  },
-
-  flowers:{
-    symbol:"🌷",
-    text:
-    `I notice the little things about you.<br><br>
-    Even the parts you probably wish you could change.<br><br>
-    I don't need you to be perfect, babyyy.`
-  },
-
-  headphones:{
-    symbol:"♡",
-    text:
-    `When everything feels too loud,<br>
-    you don't have to explain everything perfectly.<br><br>
-    You can just let it out.<br><br>
-    I'll listen.`
-  },
-
-  cd:{
-    symbol:"💿",
-    text:
-    `There are songs I want to hear with you someday.<br><br>
-    Not through a screen.<br>
-    Not through headphones on separate sides of the country.<br><br>
-    Just us.`
-  },
-
-  tape:{
-    symbol:"📼",
-    text:
-    `Sometimes I wish I could just sit beside you
-    when you're tired and say everything without needing
-    the right words.<br><br>
-    So I left you my voice instead.`,
-
-    tape:true
-  },
-
-  cat:{
-    symbol:"🐈",
-    text:
-    `Maybe our someday isn't some perfect life.<br><br>
-    Maybe it's waking up, cooking something,
-    watching something together, getting matcha,
-    taking care of Riee, and taking care of our cats.<br><br>
-    Just our own little world.`
-  },
-
-  catitem:{
-    symbol:"🐾",
-    text:
-    `I love the ordinary things I imagine with you.<br><br>
-    The quiet ones.<br>
-    The boring ones.<br>
-    The ones that don't need to be perfect.<br><br>
-    Because they're ours.`
-  }
-
-};
-
-
-/* --------------------------------
-   SHOW MESSAGE
--------------------------------- */
-
-function showMessage(type){
-
-  const data = messages[type];
-
-  if(!data) return;
-
-  discovered.add(type);
-
-  updateProgress();
-
-  document.getElementById("messageSymbol").innerHTML = data.symbol;
-
-  document.getElementById("messageText").innerHTML = data.text;
-
-  const extra = document.getElementById("extraContent");
-
-  extra.innerHTML = "";
-
-  /* VOICE TAPE */
-
-  if(data.tape){
-
-    extra.innerHTML = `
-      <div class="music-card">
-        <button class="music-btn" onclick="playVoice()">
-          ▶ play my voice
-        </button>
-      </div>
-    `;
-
-  }
-
-  /* CD */
-
-  if(type === "cd"){
-
-    extra.innerHTML = `
-      <div class="music-card">
-        <button class="music-btn" onclick="playSomeday()">
-          ▶ play "Someday"
-        </button>
-
-        <br>
-
-        <label class="upload">
-          add Someday audio
-          <input
-            class="file-input"
-            type="file"
-            accept="audio/*"
-            onchange="loadSong(this)"
-          >
-        </label>
-      </div>
-    `;
-
-  }
-
-  document.getElementById("message").classList.add("show");
-
-}
-
-
-/* --------------------------------
-   CLOSE
--------------------------------- */
-
-function closeMessage(){
-
-  document.getElementById("message").classList.remove("show");
-
-  checkFinal();
-
-}
-
-
-/* --------------------------------
-   PROGRESS
--------------------------------- */
-
-function updateProgress(){
-
-  const percent = Math.min(
-    discovered.size / totalObjects * 100,
-    100
-  );
-
-  document.getElementById("progressFill").style.width =
-    percent + "%";
-
-}
-
-
-/* --------------------------------
-   FINAL TRIGGER
--------------------------------- */
-
-function checkFinal(){
-
-  if(discovered.size >= totalObjects){
-
-    if(document.getElementById("finalHint")) return;
-
-    setTimeout(() => {
-
-      const finalHint = document.createElement("button");
-
-      finalHint.id = "finalHint";
-
-      finalHint.innerHTML = "☄";
-
-      finalHint.style.cssText = `
-        position:absolute;
-        z-index:60;
-        left:50%;
-        bottom:5%;
-        transform:translateX(-50%);
-        border:0;
-        background:transparent;
-        color:white;
-        font-size:27px;
-        opacity:.65;
-        animation:pulse 2s infinite;
-        cursor:pointer;
-      `;
-
-      finalHint.onclick = openFinal;
-
-      document.getElementById("room").appendChild(finalHint);
-
-    },700);
-
-  }
-
-}
-
-
-/* --------------------------------
-   FINAL
--------------------------------- */
-
-function openFinal(){
-
-  document.getElementById("room").style.opacity = "0";
-
-  setTimeout(() => {
-
-    document.getElementById("final").classList.add("show");
-
-  },700);
-
-}
-
-
-/* --------------------------------
-   VOICE
--------------------------------- */
-
-/*
-   Your voice recording is hosted in the
-   GitHub repository.
-
-   File:
-   09-28-2026 19.58.m4a
-*/
+/* =========================================================
+   VOICE RECORDING
+   Your GitHub-hosted recording
+========================================================= */
 
 const voiceURL =
   "https://github.com/jeremiedgzman-a11y/babyyy/raw/refs/heads/main/09-28-2026%2019.58.m4a";
 
 
-function playVoice(){
+/* =========================================================
+   SOMEDAY SONG
+   Upload the song to GitHub later and replace this URL.
+========================================================= */
 
-  const audio = document.getElementById("voiceAudio");
+const somedayURL = "";
 
-  /*
-     Stop and reset the audio so that
-     pressing the button always starts
-     your voice from the beginning.
-  */
 
-  audio.pause();
+/* =========================================================
+   OBJECT DATA
+========================================================= */
 
-  audio.currentTime = 0;
+const objects = {
+
+  riee: {
+    icon: "🧸",
+    title: "Riee",
+    text:
+      "Our sleepy little Riee. He wakes up slowly, looks around, and somehow still has the energy to say the most random things.",
+    extra:
+      "<p style='margin-top:18px;font-style:italic;'>\"baho ng tatay ko\"</p><p style='margin-top:14px;'>And somehow, you end up hugging me anyway. ♡</p>"
+  },
+
+  matcha: {
+    icon: "🍵",
+    title: "matcha",
+    text:
+      "I don't think I need a grand moment to know that I love you. Sometimes it's just imagining us sitting somewhere quietly, drinking matcha, talking about random things, and simply being there together."
+  },
+
+  moonlamp: {
+    icon: "🌙",
+    title: "for the nights",
+    text:
+      "I know there are nights when your mind gets too loud. When you start thinking about what people might think of you, when everything feels stressful, or when you just get irritated because you've had enough.",
+    extra:
+      "<p style='margin-top:18px;'>You don't always have to figure everything out immediately.</p><p style='margin-top:14px;'>You can just stay. I'll listen.</p>"
+  },
+
+  flowers: {
+    icon: "💐",
+    title: "you, exactly as you are",
+    text:
+      "Babyyy, I want you to know that you're beautiful. Maganda ka and hindi na mababago yun.",
+    extra:
+      "<p style='margin-top:18px;'>You're always appreciated. Not only for the parts you like about yourself, but for every little imperfection you sometimes wish you could hide.</p><p style='margin-top:16px;'>I love every part of you.</p>"
+  },
+
+  headphones: {
+    icon: "🎧",
+    title: "I'll listen",
+    text:
+      "When you're anxious, stressed, irritated, or simply tired, you don't have to make yourself okay before coming to me.",
+    extra:
+      "<p style='margin-top:18px;'>I'll listen to everything you want to let out.</p><p style='margin-top:14px;'>And if I could, I'd give you my arms to hold onto and just stay there with you until things feel a little lighter.</p>"
+  },
+
+  cd: {
+    icon: "💿",
+    title: "a someday song",
+    text:
+      "For our someday.",
+    extra: `
+      <div class="music-card">
+        <button class="music-btn" onclick="playSomeday()">
+          ▶ play someday
+        </button>
+      </div>
+      <p style="margin-top:18px;font-size:13px;opacity:.65;">
+        The Ridleys — Someday
+      </p>
+    `
+  },
+
+  tape: {
+    icon: "📼",
+    title: "a little piece of me",
+    text:
+      "Sometimes I wish I could just sit beside you when you're tired and let you hear me without needing to type everything.",
+    extra: `
+      <div class="music-card">
+        <button class="music-btn" onclick="playVoice()">
+          ▶ play my voice
+        </button>
+      </div>
+      <p style="margin-top:18px;font-size:13px;opacity:.65;">
+        just something from me to you ♡
+      </p>
+    `
+  },
+
+  cat: {
+    icon: "🐈",
+    title: "our little world",
+    text:
+      "I think about the life we talk about sometimes.",
+    extra:
+      "<p style='margin-top:18px;'>Waking up. Cooking. Watching something together. Going out. Getting matcha. Taking care of Riee. Taking care of our cats.</p><p style='margin-top:18px;'>Nothing perfect. Just ours.</p>"
+  },
+
+  catitem: {
+    icon: "🐾",
+    title: "come here",
+    text:
+      "You don't have to be perfect here.",
+    extra:
+      "<p style='margin-top:18px;'>You don't have to have everything figured out.</p><p style='margin-top:14px;'>You can be tired. You can be vulnerable. You can have bad days.</p><p style='margin-top:18px;font-style:italic;'>Let's hold each other and become our own peace.</p>"
+  }
+
+};
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+const explored = new Set();
+
+const modal =
+  document.getElementById("modal");
+
+const modalIcon =
+  document.getElementById("modalIcon");
+
+const modalTitle =
+  document.getElementById("modalTitle");
+
+const modalText =
+  document.getElementById("modalText");
+
+const modalExtra =
+  document.getElementById("modalExtra");
+
+const progress =
+  document.getElementById("progress");
+
+const progressCount =
+  document.getElementById("progressCount");
+
+const comet =
+  document.getElementById("comet");
+
+
+/* =========================================================
+   ENTER
+========================================================= */
+
+function enterWorld() {
+
+  document
+    .getElementById("intro")
+    .classList.add("hide");
+
+  document
+    .getElementById("world")
+    .classList.add("show");
+
+  setTimeout(() => {
+    progress.classList.add("visible");
+  }, 1200);
+}
+
+
+/* =========================================================
+   OPEN OBJECT
+========================================================= */
+
+function openObject(key) {
+
+  const data = objects[key];
+
+  if (!data) return;
+
+  modalIcon.innerHTML = data.icon;
+  modalTitle.textContent = data.title;
+  modalText.textContent = data.text;
+  modalExtra.innerHTML = data.extra || "";
+
+  modal.classList.add("open");
+
+  explored.add(key);
+
+  updateProgress();
+}
+
+
+/* =========================================================
+   CLOSE MODAL
+========================================================= */
+
+function closeModal() {
+
+  modal.classList.remove("open");
+
+}
+
+
+/* =========================================================
+   CLOSE WHEN CLICKING OUTSIDE
+========================================================= */
+
+modal.addEventListener("click", function(event) {
+
+  if (event.target === modal) {
+    closeModal();
+  }
+
+});
+
+
+/* =========================================================
+   ESC KEY
+========================================================= */
+
+document.addEventListener("keydown", function(event) {
+
+  if (event.key === "Escape") {
+    closeModal();
+  }
+
+});
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+function updateProgress() {
+
+  progressCount.textContent = explored.size;
+
+  if (explored.size >= 9) {
+
+    setTimeout(() => {
+      comet.classList.add("show");
+    }, 700);
+
+  }
+
+}
+
+
+/* =========================================================
+   VOICE
+========================================================= */
+
+function playVoice() {
+
+  const audio =
+    document.getElementById("voiceAudio");
+
+  if (!voiceURL) {
+    alert("Voice recording isn't connected yet.");
+    return;
+  }
 
   audio.src = voiceURL;
 
+  audio.pause();
+  audio.currentTime = 0;
+
   audio.load();
 
-  const playPromise = audio.play();
-
-  if(playPromise !== undefined){
-
-    playPromise.catch(() => {
-
-      alert(
-        "The voice couldn't start automatically. " +
-        "Please tap the play button again."
-      );
-
-    });
-
-  }
+  audio.play().catch(() => {
+    alert(
+      "Tap the play button again to start the voice recording."
+    );
+  });
 
 }
 
 
-/* --------------------------------
+/* =========================================================
    SOMEDAY
--------------------------------- */
+========================================================= */
 
-let songURL = null;
+function playSomeday() {
 
-function loadSong(input){
+  const audio =
+    document.getElementById("somdayAudio");
 
-  if(!input.files || !input.files[0]) return;
+  if (!somedayURL) {
 
-  songURL = URL.createObjectURL(input.files[0]);
-
-  const audio = document.getElementById("somdayAudio");
-
-  audio.src = songURL;
-
-  audio.play();
-
-}
-
-
-function playSomeday(){
-
-  const audio = document.getElementById("somdayAudio");
-
-  if(!audio.src){
-
-    alert("Add your audio file for \"Someday\" first.");
+    alert(
+      "The Someday audio isn't connected yet. Upload the song to GitHub first."
+    );
 
     return;
-
   }
 
-  audio.play();
+  audio.src = somedayURL;
+
+  audio.pause();
+  audio.currentTime = 0;
+
+  audio.load();
+
+  audio.play().catch(() => {
+    alert(
+      "Tap the play button again to start the song."
+    );
+  });
 
 }
 
 
-/* --------------------------------
-   SMALL ANIMATION
--------------------------------- */
+/* =========================================================
+   FINAL
+========================================================= */
 
-const style = document.createElement("style");
+function showFinal() {
 
-style.innerHTML = `
-@keyframes pulse{
-  0%,100%{
-    opacity:.25;
-    transform:translateX(-50%) scale(1);
-  }
+  closeModal();
 
-  50%{
-    opacity:.9;
-    transform:translateX(-50%) scale(1.25);
-  }
+  const final =
+    document.getElementById("final");
+
+  final.classList.add("show");
+
 }
-`;
-
-document.head.appendChild(style);
 
 
-/* --------------------------------
-   PREVENT ACCIDENTAL SCROLL
--------------------------------- */
+/* =========================================================
+   STOP AUDIO WHEN FINAL OPENS
+========================================================= */
 
-document.addEventListener("touchmove",function(e){
+document
+  .getElementById("final")
+  .addEventListener("click", function() {
 
-  e.preventDefault();
+    const voice =
+      document.getElementById("voiceAudio");
 
-},{passive:false});
+    const song =
+      document.getElementById("somdayAudio");
+
+    voice.pause();
+    song.pause();
+
+  });
+
 
 </script>
 
