@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -488,22 +487,11 @@ button{
   padding:12px 18px;
   border-radius:22px;
   font-size:11px;
+  cursor:pointer;
 }
 
-/* ---------------- FILE INPUT ---------------- */
-
-.file-input{
-  display:none;
-}
-
-.upload{
-  display:inline-block;
-  margin-top:12px;
-  padding:10px 15px;
-  border-radius:18px;
-  background:rgba(255,255,255,.07);
-  font-size:10px;
-  letter-spacing:1px;
+.music-btn:active{
+  transform:scale(.96);
 }
 
 /* ---------------- FINAL ---------------- */
@@ -860,8 +848,16 @@ button{
 
 
 <!-- AUDIO -->
-<audio id="somdayAudio" preload="none"></audio>
-<audio id="voiceAudio" preload="none"></audio>
+
+<audio
+  id="somdayAudio"
+  preload="none">
+</audio>
+
+<audio
+  id="voiceAudio"
+  preload="none">
+</audio>
 
 
 <script>
@@ -997,6 +993,8 @@ function showMessage(type){
 
   extra.innerHTML = "";
 
+  /* VOICE TAPE */
+
   if(data.tape){
 
     extra.innerHTML = `
@@ -1004,21 +1002,12 @@ function showMessage(type){
         <button class="music-btn" onclick="playVoice()">
           ▶ play my voice
         </button>
-
-        <br>
-
-        <label class="upload">
-          add your voice recording
-          <input
-            class="file-input"
-            type="file"
-            accept="audio/*"
-            onchange="loadVoice(this)"
-          >
-        </label>
       </div>
     `;
+
   }
+
+  /* CD */
 
   if(type === "cd"){
 
@@ -1041,6 +1030,7 @@ function showMessage(type){
         </label>
       </div>
     `;
+
   }
 
   document.getElementById("message").classList.add("show");
@@ -1084,12 +1074,9 @@ function updateProgress(){
 
 function checkFinal(){
 
-  /*
-    Once enough of the room has been explored,
-    a subtle path to the ending becomes available.
-  */
-
   if(discovered.size >= totalObjects){
+
+    if(document.getElementById("finalHint")) return;
 
     setTimeout(() => {
 
@@ -1146,35 +1133,50 @@ function openFinal(){
    VOICE
 -------------------------------- */
 
-let voiceURL = null;
+/*
+   Your voice recording is hosted in the
+   GitHub repository.
 
-function loadVoice(input){
+   File:
+   09-28-2026 19.58.m4a
+*/
 
-  if(!input.files || !input.files[0]) return;
+const voiceURL =
+  "https://github.com/jeremiedgzman-a11y/babyyy/raw/refs/heads/main/09-28-2026%2019.58.m4a";
 
-  voiceURL = URL.createObjectURL(input.files[0]);
-
-  const audio = document.getElementById("voiceAudio");
-
-  audio.src = voiceURL;
-
-  audio.play();
-
-}
 
 function playVoice(){
 
   const audio = document.getElementById("voiceAudio");
 
-  if(!audio.src){
+  /*
+     Stop and reset the audio so that
+     pressing the button always starts
+     your voice from the beginning.
+  */
 
-    alert("Add your voice recording first.");
+  audio.pause();
 
-    return;
+  audio.currentTime = 0;
+
+  audio.src = voiceURL;
+
+  audio.load();
+
+  const playPromise = audio.play();
+
+  if(playPromise !== undefined){
+
+    playPromise.catch(() => {
+
+      alert(
+        "The voice couldn't start automatically. " +
+        "Please tap the play button again."
+      );
+
+    });
 
   }
-
-  audio.play();
 
 }
 
@@ -1198,6 +1200,7 @@ function loadSong(input){
   audio.play();
 
 }
+
 
 function playSomeday(){
 
@@ -1228,6 +1231,7 @@ style.innerHTML = `
     opacity:.25;
     transform:translateX(-50%) scale(1);
   }
+
   50%{
     opacity:.9;
     transform:translateX(-50%) scale(1.25);
@@ -1243,11 +1247,12 @@ document.head.appendChild(style);
 -------------------------------- */
 
 document.addEventListener("touchmove",function(e){
+
   e.preventDefault();
+
 },{passive:false});
 
 </script>
 
 </body>
 </html>
-```
