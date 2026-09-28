@@ -3,9 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#17131a">
 <title>for babyyy ♡</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -13,42 +16,56 @@
 }
 
 :root {
-  --cream: #f8f1e7;
-  --warm: #ead8c5;
-  --brown: #6d5140;
-  --dark: #382b25;
-  --pink: #d99aa5;
-  --soft-pink: #efd0d3;
-  --green: #9caf91;
-  --shadow: rgba(70, 45, 35, 0.18);
+  --night: #151219;
+  --night2: #211a21;
+  --cream: #f8eee4;
+  --paper: #fff9f2;
+  --brown: #654b40;
+  --brown-dark: #3c2b28;
+  --muted: #8e7469;
+  --rose: #d99ca4;
+  --rose-light: #efd1d0;
+  --sage: #a7b49a;
+  --gold: #e7c994;
+  --shadow: rgba(30, 19, 17, .24);
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
 }
 
 body {
-  min-height: 100vh;
   overflow-x: hidden;
-  background: var(--cream);
-  color: var(--dark);
-  font-family: Georgia, "Times New Roman", serif;
+  background: var(--night);
+  color: var(--brown-dark);
+  font-family: "DM Sans", sans-serif;
 }
 
-button {
-  font-family: inherit;
-}
-
-/* =========================
+/* =========================================================
    INTRO
-========================= */
+========================================================= */
 
 #intro {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: 5000;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   background:
-    radial-gradient(circle at 50% 40%, #fffaf3 0%, #f5e9dc 55%, #ead7c3 100%);
-  transition: opacity 1.2s ease, visibility 1.2s ease;
+    radial-gradient(circle at 50% 42%,
+      rgba(235, 207, 180, .18),
+      transparent 30%),
+    radial-gradient(circle at 50% 80%,
+      rgba(177, 125, 116, .12),
+      transparent 38%),
+    #151219;
+  transition:
+    opacity 1.4s ease,
+    visibility 1.4s ease;
 }
 
 #intro.hide {
@@ -57,374 +74,623 @@ button {
   pointer-events: none;
 }
 
+.intro-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.intro-stars span {
+  position: absolute;
+  color: rgba(255, 239, 211, .55);
+  font-size: 8px;
+  animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+.intro-stars span:nth-child(1) { left: 13%; top: 22%; }
+.intro-stars span:nth-child(2) { left: 27%; top: 70%; animation-delay: .7s; }
+.intro-stars span:nth-child(3) { left: 74%; top: 20%; animation-delay: 1.2s; }
+.intro-stars span:nth-child(4) { left: 87%; top: 62%; animation-delay: 1.8s; }
+.intro-stars span:nth-child(5) { left: 62%; top: 76%; animation-delay: .4s; }
+.intro-stars span:nth-child(6) { left: 42%; top: 14%; animation-delay: 2s; }
+
 .intro-content {
+  position: relative;
+  z-index: 2;
   text-align: center;
-  animation: fadeUp 1.4s ease;
+  animation: introRise 1.8s ease both;
 }
 
 .intro-heart {
-  font-size: 38px;
-  margin-bottom: 25px;
-  animation: heartbeat 2s infinite;
+  color: #e6b3b5;
+  font-size: 30px;
+  margin-bottom: 28px;
+  animation: heartbeat 2.6s ease-in-out infinite;
 }
 
 .intro-title {
-  font-size: clamp(34px, 8vw, 62px);
-  font-weight: normal;
-  letter-spacing: 2px;
-  color: #4b372d;
-  margin-bottom: 35px;
+  color: #f9eee4;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(42px, 9vw, 76px);
+  font-weight: 400;
+  letter-spacing: .5px;
+}
+
+.intro-subtle {
+  height: 25px;
+  margin-top: 12px;
+  color: rgba(249, 238, 228, .42);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: lowercase;
 }
 
 .enter-btn {
-  border: 1px solid rgba(90, 65, 50, 0.25);
-  background: rgba(255,255,255,0.45);
-  color: var(--brown);
-  padding: 13px 30px;
-  border-radius: 40px;
+  margin-top: 35px;
+  padding: 13px 29px;
+  border: 1px solid rgba(249, 238, 228, .2);
+  border-radius: 50px;
+  background: rgba(255,255,255,.045);
+  color: #f8eee4;
+  font-size: 13px;
+  letter-spacing: 1px;
   cursor: pointer;
-  font-size: 15px;
-  transition: .3s ease;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
+  transition: .35s ease;
 }
 
 .enter-btn:hover {
-  background: white;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px var(--shadow);
+  background: rgba(255,255,255,.1);
+  border-color: rgba(249, 238, 228, .4);
+  transform: translateY(-3px);
 }
 
-/* =========================
-   MAIN
-========================= */
+/* =========================================================
+   WORLD
+========================================================= */
 
 #world {
-  min-height: 100vh;
   display: none;
-  position: relative;
-  overflow: hidden;
+  min-height: 100vh;
 }
 
 #world.show {
   display: block;
-  animation: fadeIn 1.2s ease;
+  animation: roomFade 1.5s ease;
 }
 
 .room {
   position: relative;
-  width: 100%;
   min-height: 100vh;
+  height: 100vh;
   overflow: hidden;
   background:
     linear-gradient(
       to bottom,
-      #d9c8ba 0%,
-      #e8d9cc 58%,
-      #c7ae98 58%,
-      #b9987d 100%
+      #51444c 0%,
+      #756168 47%,
+      #a8877a 47%,
+      #b89580 100%
     );
 }
 
-/* window */
+/* subtle room grain */
+
+.room::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(255,220,190,.08),
+      transparent 35%
+    );
+  mix-blend-mode: screen;
+}
+
+/* =========================================================
+   WINDOW
+========================================================= */
 
 .window {
   position: absolute;
-  width: 31vw;
-  height: 34vh;
-  max-width: 360px;
-  min-width: 230px;
-  top: 8vh;
-  left: 8vw;
-  border: 12px solid #765b4a;
-  background: linear-gradient(#263343, #53677b);
-  box-shadow: 0 12px 35px rgba(40,25,20,.2);
-}
-
-.window::before,
-.window::after {
-  content: "";
-  position: absolute;
-  background: rgba(255,255,255,.15);
+  z-index: 2;
+  left: 7%;
+  top: 8%;
+  width: min(31vw, 390px);
+  height: min(35vh, 330px);
+  min-width: 235px;
+  min-height: 210px;
+  overflow: hidden;
+  border: 11px solid #49383a;
+  border-radius: 7px;
+  background:
+    linear-gradient(
+      150deg,
+      #101620,
+      #283342 48%,
+      #17202d
+    );
+  box-shadow:
+    0 25px 45px rgba(25, 15, 20, .25),
+    inset 0 0 30px rgba(255,255,255,.04);
 }
 
 .window::before {
-  width: 8px;
+  content: "";
+  position: absolute;
+  width: 6px;
   height: 100%;
   left: 50%;
   top: 0;
+  transform: translateX(-50%);
+  background: #49383a;
 }
 
 .window::after {
-  height: 8px;
+  content: "";
+  position: absolute;
   width: 100%;
-  top: 50%;
+  height: 6px;
   left: 0;
+  top: 52%;
+  background: #49383a;
 }
 
-.moon {
+.window-moon {
   position: absolute;
-  width: 65px;
-  height: 65px;
+  width: 64px;
+  height: 64px;
+  right: 17%;
+  top: 15%;
   border-radius: 50%;
-  background: #fff7d5;
-  top: 23%;
-  left: 65%;
-  box-shadow: 0 0 35px rgba(255,242,190,.65);
+  background: #f9edc9;
+  box-shadow:
+    0 0 18px rgba(255,242,193,.65),
+    0 0 55px rgba(255,228,159,.25);
 }
 
-.star {
+.window-star {
   position: absolute;
-  color: #fff8d8;
-  font-size: 10px;
-  animation: twinkle 3s infinite alternate;
+  color: rgba(255,244,213,.85);
+  font-size: 8px;
 }
 
-.star.s1 { top: 17%; left: 20%; }
-.star.s2 { top: 68%; left: 25%; animation-delay: 1s; }
-.star.s3 { top: 34%; left: 82%; animation-delay: .5s; }
-.star.s4 { top: 75%; left: 72%; animation-delay: 1.5s; }
+.window-star.a { left: 15%; top: 22%; }
+.window-star.b { left: 72%; top: 72%; }
+.window-star.c { left: 33%; top: 67%; }
+.window-star.d { left: 82%; top: 28%; }
 
-/* bed */
+/* =========================================================
+   BED
+========================================================= */
 
 .bed {
   position: absolute;
-  width: 57vw;
-  max-width: 650px;
-  min-width: 330px;
-  height: 25vh;
-  min-height: 180px;
+  z-index: 5;
   left: 50%;
-  bottom: 7vh;
+  bottom: 11%;
+  width: min(61vw, 760px);
+  height: min(32vh, 280px);
+  min-width: 360px;
   transform: translateX(-50%);
 }
 
 .headboard {
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 70%;
-  border-radius: 22px 22px 8px 8px;
-  background: #765746;
-  box-shadow: 0 12px 25px rgba(50,30,20,.2);
+  inset: 0 0 21% 0;
+  border-radius: 28px 28px 10px 10px;
+  background:
+    linear-gradient(
+      120deg,
+      #5c443d,
+      #795a4d 50%,
+      #5b423b
+    );
+  box-shadow:
+    0 22px 40px rgba(44,27,24,.25),
+    inset 0 2px 1px rgba(255,255,255,.08);
+}
+
+.headboard::after {
+  content: "";
+  position: absolute;
+  inset: 15px;
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 20px;
 }
 
 .mattress {
   position: absolute;
-  width: 95%;
-  height: 52%;
-  left: 2.5%;
-  bottom: 4%;
-  border-radius: 20px;
-  background: #f5e9dc;
-  box-shadow: 0 12px 25px rgba(55,35,25,.18);
+  z-index: 2;
+  left: 2%;
+  bottom: 8%;
+  width: 96%;
+  height: 47%;
+  border-radius: 22px;
+  background:
+    linear-gradient(
+      120deg,
+      #fbf1e7,
+      #f4e5d8
+    );
+  box-shadow:
+    0 18px 30px rgba(45,28,24,.2),
+    inset 0 -8px 15px rgba(95,65,54,.06);
 }
 
 .blanket {
   position: absolute;
-  width: 58%;
-  height: 48%;
-  right: 3%;
-  bottom: 7%;
-  border-radius: 20px;
-  background: #d7b8aa;
-  transform: rotate(-1deg);
+  z-index: 3;
+  right: 2%;
+  bottom: 10%;
+  width: 55%;
+  height: 43%;
+  border-radius: 20px 20px 16px 25px;
+  background:
+    linear-gradient(
+      145deg,
+      #b88783,
+      #d1a5a0
+    );
+  box-shadow:
+    inset 0 2px 2px rgba(255,255,255,.12);
 }
-
-/* pillow */
 
 .pillow {
   position: absolute;
-  width: 25%;
-  height: 38%;
+  z-index: 4;
   left: 7%;
-  bottom: 13%;
+  bottom: 18%;
+  width: 27%;
+  height: 30%;
   border-radius: 20px;
-  background: #fffaf2;
-  box-shadow: inset 0 -5px 10px rgba(80,50,40,.08);
+  background: #fff8ef;
+  box-shadow:
+    0 5px 12px rgba(80,55,45,.08),
+    inset 0 -5px 10px rgba(100,70,55,.05);
 }
 
-/* bedside table */
+/* =========================================================
+   RIEE
+========================================================= */
 
-.table {
+.riee {
   position: absolute;
-  width: 120px;
-  height: 105px;
-  bottom: 17vh;
-  right: 7vw;
-  background: #765746;
-  border-radius: 8px;
-  box-shadow: 0 15px 30px rgba(50,30,20,.2);
-}
-
-.table::after {
-  content: "";
-  position: absolute;
-  width: 15px;
-  height: 75px;
-  background: #5f4637;
-  left: 20px;
-  top: 90px;
-  box-shadow: 65px 0 #5f4637;
-}
-
-/* floor */
-
-.rug {
-  position: absolute;
-  width: 55vw;
-  height: 13vh;
-  bottom: 1vh;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #bda08a;
-  border-radius: 50%;
-  opacity: .65;
-}
-
-/* =========================
-   OBJECTS
-========================= */
-
-.object {
-  position: absolute;
+  z-index: 20;
+  left: 40%;
+  bottom: 19%;
+  width: 92px;
+  height: 92px;
   border: 0;
+  border-radius: 50%;
   background: transparent;
   cursor: pointer;
-  transition: transform .3s ease, filter .3s ease;
-  z-index: 10;
+  animation:
+    rieeSleep 4s ease-in-out infinite;
 }
 
-.object:hover {
-  transform: scale(1.08);
-  filter: brightness(1.08);
+.riee-body {
+  position: absolute;
+  left: 17px;
+  bottom: 7px;
+  width: 58px;
+  height: 59px;
+  border-radius: 48% 48% 43% 43%;
+  background: #b88e76;
+  box-shadow:
+    inset -8px -5px 0 rgba(91,58,46,.08);
 }
 
-.object-label {
+.riee-head {
+  position: absolute;
+  left: 16px;
+  top: 5px;
+  width: 61px;
+  height: 57px;
+  border-radius: 48%;
+  background: #c59b80;
+  box-shadow:
+    inset -7px -4px 0 rgba(91,58,46,.08);
+}
+
+.riee-ear {
+  position: absolute;
+  width: 22px;
+  height: 26px;
+  top: 1px;
+  border-radius: 50%;
+  background: #a97964;
+}
+
+.riee-ear.left { left: 7px; transform: rotate(-25deg); }
+.riee-ear.right { right: 7px; transform: rotate(25deg); }
+
+.riee-face {
+  position: absolute;
+  left: 27px;
+  top: 25px;
+  font-size: 17px;
+  color: #4c342e;
+}
+
+.riee-hood {
+  position: absolute;
+  left: 10px;
+  bottom: 2px;
+  width: 72px;
+  height: 47px;
+  border-radius: 22px 22px 30px 30px;
+  background: #8da176;
+}
+
+.riee-hood::before,
+.riee-hood::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 25px;
+  top: -8px;
+  background: #8da176;
+  border-radius: 60% 40% 50% 50%;
+}
+
+.riee-hood::before {
+  left: 7px;
+  transform: rotate(-28deg);
+}
+
+.riee-hood::after {
+  right: 7px;
+  transform: rotate(28deg);
+}
+
+.riee-label {
   position: absolute;
   left: 50%;
-  top: calc(100% + 7px);
+  bottom: -23px;
   transform: translateX(-50%);
   white-space: nowrap;
-  font-size: 11px;
-  color: rgba(65,45,35,.55);
+  color: rgba(255,248,238,.55);
+  font-size: 10px;
   opacity: 0;
   transition: .3s;
-  pointer-events: none;
 }
 
-.object:hover .object-label {
+.riee:hover .riee-label {
   opacity: 1;
 }
 
-/* Riee */
+/* =========================================================
+   BEDSIDE TABLE
+========================================================= */
 
-.riee {
-  left: 43%;
-  bottom: 20%;
-  font-size: 70px;
-  animation: breathe 4s ease-in-out infinite;
+.table {
+  position: absolute;
+  z-index: 6;
+  right: 7%;
+  bottom: 21%;
+  width: 128px;
+  height: 112px;
+  border-radius: 9px;
+  background:
+    linear-gradient(
+      135deg,
+      #654a40,
+      #765648
+    );
+  box-shadow:
+    0 18px 28px rgba(45,25,20,.23);
+}
+
+.table::before {
+  content: "";
+  position: absolute;
+  width: 94%;
+  height: 10px;
+  left: 3%;
+  top: -6px;
+  border-radius: 5px;
+  background: #815f4e;
+}
+
+.table-leg {
+  position: absolute;
+  width: 13px;
+  height: 73px;
+  bottom: -66px;
+  border-radius: 4px;
+  background: #4f392f;
+}
+
+.table-leg.left { left: 18px; }
+.table-leg.right { right: 18px; }
+
+/* =========================================================
+   OBJECTS
+========================================================= */
+
+.object {
+  position: absolute;
+  z-index: 30;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition:
+    transform .35s ease,
+    filter .35s ease;
+}
+
+.object:hover {
+  transform: scale(1.1) translateY(-3px);
+  filter: brightness(1.12);
+}
+
+.object::after {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  background: rgba(255,240,215,.06);
+  opacity: 0;
+  transition: .35s;
+}
+
+.object:hover::after {
+  opacity: 1;
+}
+
+.obj-label {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 8px);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  color: rgba(255,248,239,.62);
+  font-size: 10px;
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: .3s;
+}
+
+.object:hover .obj-label {
+  opacity: 1;
 }
 
 /* matcha */
 
 .matcha {
-  right: 12px;
-  top: 20px;
-  font-size: 43px;
+  right: 25px;
+  top: -5px;
+  font-size: 39px;
 }
 
 /* moon lamp */
 
 .moonlamp {
-  right: 7vw;
-  top: 12vh;
-  font-size: 53px;
+  right: 8%;
+  top: 11%;
+  font-size: 55px;
+  filter: drop-shadow(0 0 15px rgba(246,220,170,.25));
 }
 
 /* flowers */
 
 .flowers {
-  left: 7vw;
-  bottom: 20vh;
-  font-size: 56px;
+  left: 7%;
+  bottom: 24%;
+  font-size: 51px;
 }
 
 /* headphones */
 
 .headphones {
-  left: 21vw;
-  bottom: 19vh;
-  font-size: 49px;
+  left: 20%;
+  bottom: 21%;
+  font-size: 43px;
 }
 
-/* CD */
+/* cd */
 
 .cd {
-  right: 23vw;
-  bottom: 18vh;
-  font-size: 49px;
+  right: 23%;
+  bottom: 19%;
+  font-size: 45px;
 }
 
 /* tape */
 
 .tape {
-  right: 35vw;
-  bottom: 18vh;
-  font-size: 43px;
+  right: 35%;
+  bottom: 19%;
+  font-size: 40px;
 }
 
 /* cat */
 
 .cat {
-  left: 15vw;
-  bottom: 8vh;
-  font-size: 55px;
+  left: 11%;
+  bottom: 7%;
+  font-size: 51px;
   animation: catBreath 4s ease-in-out infinite;
 }
 
-/* cat item */
+/* cat paw */
 
 .cat-item {
-  left: 5vw;
-  bottom: 9vh;
-  font-size: 43px;
+  left: 5%;
+  bottom: 9%;
+  font-size: 39px;
 }
 
-/* =========================
-   PROGRESS
-========================= */
+/* =========================================================
+   DISCOVERY INDICATOR
+========================================================= */
 
 .progress {
   position: fixed;
-  top: 18px;
-  right: 20px;
-  z-index: 50;
-  font-size: 11px;
-  color: rgba(60,40,30,.45);
-  letter-spacing: 1px;
+  z-index: 100;
+  right: 22px;
+  top: 20px;
+  color: rgba(255,248,238,.45);
+  font-size: 10px;
+  letter-spacing: 2px;
   opacity: 0;
-  transition: .5s;
+  transition: 1s;
 }
 
-.progress.visible {
+.progress.show {
   opacity: 1;
 }
 
-/* =========================
+/* =========================================================
+   COMET / ENDING
+========================================================= */
+
+.comet {
+  position: fixed;
+  z-index: 150;
+  left: 50%;
+  bottom: 17px;
+  transform: translateX(-50%);
+  border: 0;
+  background: transparent;
+  color: rgba(255,239,209,.4);
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: .8s;
+}
+
+.comet.show {
+  opacity: 1;
+  visibility: visible;
+  animation: cometFloat 2.5s ease-in-out infinite;
+}
+
+.comet:hover {
+  color: white;
+  transform: translateX(-50%) scale(1.2);
+}
+
+/* =========================================================
    MODAL
-========================= */
+========================================================= */
 
 .modal {
   position: fixed;
   inset: 0;
-  z-index: 500;
+  z-index: 3000;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 25px;
-  background: rgba(40,27,21,.28);
-  backdrop-filter: blur(7px);
+  padding: 22px;
+  background: rgba(20,15,19,.48);
+  backdrop-filter: blur(10px);
   opacity: 0;
   visibility: hidden;
   transition: .4s ease;
@@ -437,44 +703,60 @@ button {
 
 .modal-card {
   position: relative;
-  width: min(520px, 94vw);
+  width: min(540px, 94vw);
   max-height: 82vh;
   overflow-y: auto;
-  padding: 42px 35px 35px;
-  border-radius: 25px;
-  background: rgba(255,250,243,.97);
-  box-shadow: 0 25px 70px rgba(50,30,20,.25);
+  padding: 43px 36px 38px;
+  border: 1px solid rgba(113,79,65,.1);
+  border-radius: 27px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,251,245,.98),
+      rgba(248,235,222,.98)
+    );
+  box-shadow:
+    0 35px 80px rgba(22,13,15,.3);
   text-align: center;
-  animation: modalUp .5s ease;
+  animation: modalRise .5s ease;
 }
 
 .close {
   position: absolute;
   right: 17px;
   top: 13px;
+  width: 32px;
+  height: 32px;
   border: 0;
-  background: transparent;
-  font-size: 22px;
-  color: #806757;
+  border-radius: 50%;
+  background: rgba(105,76,61,.06);
+  color: #80675b;
+  font-size: 21px;
+  line-height: 1;
   cursor: pointer;
 }
 
 .modal-icon {
-  font-size: 43px;
-  margin-bottom: 20px;
+  margin-bottom: 19px;
+  font-size: 42px;
 }
 
 .modal-title {
-  font-size: 25px;
-  font-weight: normal;
-  margin-bottom: 17px;
-  color: #523d31;
+  margin-bottom: 18px;
+  color: #4c3830;
+  font-family: "Playfair Display", serif;
+  font-size: 28px;
+  font-weight: 400;
 }
 
 .modal-text {
-  font-size: 16px;
-  line-height: 1.85;
-  color: #665047;
+  color: #70594e;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.modal-extra {
+  color: #70594e;
 }
 
 .music-card {
@@ -482,38 +764,53 @@ button {
 }
 
 .music-btn {
-  border: 0;
   padding: 13px 24px;
-  border-radius: 30px;
-  background: #765746;
-  color: white;
+  border: 0;
+  border-radius: 50px;
+  background: #654b40;
+  color: #fff8ef;
+  font-size: 13px;
   cursor: pointer;
+  box-shadow: 0 8px 20px rgba(70,45,35,.14);
   transition: .3s;
 }
 
 .music-btn:hover {
+  background: #513a31;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(80,50,35,.2);
 }
 
-/* =========================
+.music-note {
+  margin-top: 15px;
+  color: #92776a;
+  font-size: 11px;
+  letter-spacing: .5px;
+}
+
+/* =========================================================
    FINAL
-========================= */
+========================================================= */
 
 #final {
   position: fixed;
   inset: 0;
-  z-index: 2000;
-  background: #08070b;
-  color: white;
+  z-index: 9000;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 50% 55%,
+      #29202b 0%,
+      #100d13 48%,
+      #070609 100%
+    );
+  color: white;
   text-align: center;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 1.5s ease;
-  overflow: hidden;
+  transition: opacity 1.8s ease;
 }
 
 #final.show {
@@ -523,175 +820,103 @@ button {
 
 .final-content {
   position: relative;
-  z-index: 5;
+  z-index: 10;
   width: min(700px, 90vw);
   padding: 25px;
-  animation: finalAppear 3s ease;
+  animation: finalRise 2.7s ease both;
+}
+
+.final-small {
+  margin-bottom: 22px;
+  color: rgba(255,240,220,.5);
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
 }
 
 .final-message {
+  color: #fff8f0;
+  font-family: "Playfair Display", serif;
   font-size: clamp(19px, 3vw, 27px);
-  line-height: 1.8;
-  font-weight: normal;
-  color: #fffaf4;
+  font-weight: 400;
+  line-height: 1.85;
 }
 
 .final-signature {
-  margin-top: 30px;
-  font-size: 15px;
-  letter-spacing: 2px;
-  color: #d9c3b5;
+  margin-top: 32px;
+  color: rgba(239,209,201,.72);
+  font-family: "Playfair Display", serif;
+  font-size: 17px;
+  font-style: italic;
 }
 
-/* fireworks */
+/* =========================================================
+   FIREWORKS
+========================================================= */
 
 .firework {
   position: absolute;
-  width: 5px;
-  height: 5px;
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
-  animation: firework 3s infinite;
+  opacity: 0;
+  animation: burst 4s ease-out infinite;
 }
 
-.firework::before,
-.firework::after {
+.firework::before {
   content: "";
   position: absolute;
   width: 3px;
   height: 3px;
   border-radius: 50%;
   box-shadow:
-    0 -70px #fff,
-    35px -60px #fff,
-    60px -35px #fff,
-    70px 0 #fff,
-    60px 35px #fff,
-    35px 60px #fff,
-    0 70px #fff,
-    -35px 60px #fff,
-    -60px 35px #fff,
-    -70px 0 #fff,
-    -60px -35px #fff,
-    -35px -60px #fff;
+    0 -78px rgba(255,238,204,.9),
+    39px -68px rgba(255,224,200,.8),
+    68px -39px rgba(255,239,215,.85),
+    78px 0 rgba(255,226,194,.75),
+    68px 39px rgba(255,239,215,.8),
+    39px 68px rgba(255,224,200,.75),
+    0 78px rgba(255,238,204,.9),
+    -39px 68px rgba(255,224,200,.75),
+    -68px 39px rgba(255,239,215,.8),
+    -78px 0 rgba(255,226,194,.75),
+    -68px -39px rgba(255,239,215,.85),
+    -39px -68px rgba(255,224,200,.8);
 }
 
 .firework::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
   transform: rotate(22deg);
-  opacity: .65;
+  box-shadow:
+    0 -55px rgba(255,242,215,.65),
+    28px -48px rgba(255,229,204,.6),
+    48px -28px rgba(255,242,215,.65),
+    55px 0 rgba(255,229,204,.6),
+    48px 28px rgba(255,242,215,.65),
+    28px 48px rgba(255,229,204,.6),
+    0 55px rgba(255,242,215,.65),
+    -28px 48px rgba(255,229,204,.6),
+    -48px 28px rgba(255,242,215,.65),
+    -55px 0 rgba(255,229,204,.6),
+    -48px -28px rgba(255,242,215,.65),
+    -28px -48px rgba(255,229,204,.6);
 }
 
-.f1 {
-  left: 18%;
-  top: 24%;
-  animation-delay: .3s;
-}
+.f1 { left: 16%; top: 23%; animation-delay: .2s; }
+.f2 { left: 79%; top: 24%; animation-delay: 1.3s; }
+.f3 { left: 27%; top: 72%; animation-delay: 2.4s; }
+.f4 { left: 74%; top: 70%; animation-delay: .9s; }
+.f5 { left: 50%; top: 15%; animation-delay: 2.9s; }
 
-.f2 {
-  left: 78%;
-  top: 25%;
-  animation-delay: 1.4s;
-}
-
-.f3 {
-  left: 28%;
-  top: 70%;
-  animation-delay: 2.1s;
-}
-
-.f4 {
-  left: 73%;
-  top: 68%;
-  animation-delay: 1s;
-}
-
-.f5 {
-  left: 50%;
-  top: 15%;
-  animation-delay: 2.6s;
-}
-
-/* comet */
-
-.comet {
-  position: fixed;
-  bottom: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 100;
-  border: 0;
-  background: transparent;
-  color: rgba(255,250,240,.45);
-  font-size: 25px;
-  cursor: pointer;
-  opacity: 0;
-  visibility: hidden;
-  transition: .6s;
-}
-
-.comet.show {
-  opacity: 1;
-  visibility: visible;
-  animation: cometFloat 2s infinite ease-in-out;
-}
-
-.comet:hover {
-  color: white;
-  transform: translateX(-50%) scale(1.2);
-}
-
-/* =========================
+/* =========================================================
    ANIMATIONS
-========================= */
+========================================================= */
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  15% { transform: scale(1.13); }
-  30% { transform: scale(1); }
-}
-
-@keyframes breathe {
-  0%, 100% { transform: translateY(0) rotate(-2deg); }
-  50% { transform: translateY(-5px) rotate(2deg); }
-}
-
-@keyframes catBreath {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-3px); }
-}
-
-@keyframes twinkle {
-  from { opacity: .3; transform: scale(.8); }
-  to { opacity: 1; transform: scale(1.2); }
-}
-
-@keyframes modalUp {
-  from {
-    opacity: 0;
-    transform: translateY(25px) scale(.97);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes finalAppear {
+@keyframes introRise {
   from {
     opacity: 0;
     transform: translateY(25px);
@@ -702,21 +927,43 @@ button {
   }
 }
 
-@keyframes firework {
-  0% {
-    opacity: 0;
-    transform: scale(.2);
+@keyframes roomFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.12); }
+  30% { transform: scale(1); }
+}
+
+@keyframes twinkle {
+  from {
+    opacity: .2;
+    transform: scale(.8);
   }
-  15% {
-    opacity: 1;
-    transform: scale(1);
+  to {
+    opacity: .9;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes rieeSleep {
+  0%, 100% {
+    transform: translateY(0) rotate(-1deg);
   }
   50% {
-    opacity: .8;
+    transform: translateY(-4px) rotate(1deg);
   }
-  100% {
-    opacity: 0;
-    transform: scale(1.1);
+}
+
+@keyframes catBreath {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
   }
 }
 
@@ -725,153 +972,298 @@ button {
     transform: translateX(-50%) translateY(0);
   }
   50% {
-    transform: translateX(-50%) translateY(-5px);
+    transform: translateX(-50%) translateY(-6px);
   }
 }
 
-/* =========================
+@keyframes modalRise {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes finalRise {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes burst {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(.15);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  42% {
+    opacity: .75;
+    transform: scale(1.05);
+  }
+  60% {
+    opacity: 0;
+    transform: scale(1.12);
+  }
+}
+
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
 @media (max-width: 700px) {
 
+  .room {
+    height: 100svh;
+    min-height: 680px;
+  }
+
   .window {
-    width: 43vw;
-    height: 25vh;
-    left: 5vw;
-    top: 7vh;
+    left: 5%;
+    top: 7%;
+    width: 42vw;
+    min-width: 190px;
+    height: 24vh;
+    min-height: 180px;
+    border-width: 8px;
+  }
+
+  .window-moon {
+    width: 43px;
+    height: 43px;
   }
 
   .moonlamp {
-    right: 8vw;
-    top: 10vh;
+    right: 7%;
+    top: 9%;
+    font-size: 46px;
   }
 
   .table {
-    right: 4vw;
-    bottom: 24vh;
-    transform: scale(.8);
+    right: 5%;
+    bottom: 28%;
+    transform: scale(.78);
+    transform-origin: bottom right;
   }
 
   .bed {
-    width: 82vw;
-    bottom: 14vh;
+    width: 91vw;
+    min-width: 0;
+    height: 27vh;
+    min-height: 200px;
+    bottom: 17%;
   }
 
   .riee {
-    left: 41%;
-    bottom: 23%;
-    font-size: 58px;
+    left: 39%;
+    bottom: 17%;
+    transform: scale(.82);
   }
 
   .flowers {
-    left: 3vw;
-    bottom: 25vh;
-    font-size: 45px;
-  }
-
-  .headphones {
-    left: 17vw;
-    bottom: 24vh;
-    font-size: 39px;
-  }
-
-  .cd {
-    right: 17vw;
-    bottom: 23vh;
+    left: 3%;
+    bottom: 29%;
     font-size: 40px;
   }
 
-  .tape {
-    right: 35vw;
-    bottom: 25vh;
+  .headphones {
+    left: 15%;
+    bottom: 27%;
     font-size: 36px;
   }
 
+  .cd {
+    right: 16%;
+    bottom: 25%;
+    font-size: 38px;
+  }
+
+  .tape {
+    right: 36%;
+    bottom: 28%;
+    font-size: 34px;
+  }
+
   .cat {
-    left: 7vw;
-    bottom: 8vh;
-    font-size: 48px;
+    left: 8%;
+    bottom: 8%;
+    font-size: 45px;
   }
 
   .cat-item {
-    left: 2vw;
-    bottom: 9vh;
-    font-size: 37px;
+    left: 2%;
+    bottom: 9%;
+    font-size: 33px;
+  }
+
+  .progress {
+    top: 16px;
+    right: 16px;
   }
 
   .modal-card {
-    padding: 38px 23px 27px;
+    padding: 40px 24px 30px;
+    max-height: 80vh;
+  }
+
+  .modal-title {
+    font-size: 25px;
   }
 
   .modal-text {
-    font-size: 15px;
-    line-height: 1.75;
+    font-size: 14px;
+    line-height: 1.85;
   }
 
   .final-message {
     font-size: 18px;
-    line-height: 1.75;
+    line-height: 1.8;
+  }
+
+  .final-signature {
+    font-size: 15px;
+  }
+}
+
+@media (max-height: 700px) and (min-width: 701px) {
+
+  .window {
+    height: 29vh;
+  }
+
+  .bed {
+    bottom: 6%;
+    height: 30vh;
+  }
+
+  .table {
+    bottom: 17%;
+  }
+
+  .flowers,
+  .headphones,
+  .cd,
+  .tape {
+    bottom: 18%;
+  }
+
+  .cat {
+    bottom: 5%;
   }
 }
 </style>
 </head>
 
+
 <body>
 
-<!-- =========================
+<!-- =========================================================
      INTRO
-========================= -->
+========================================================= -->
 
 <section id="intro">
+
+  <div class="intro-stars">
+    <span>✦</span>
+    <span>✦</span>
+    <span>✦</span>
+    <span>✦</span>
+    <span>✦</span>
+    <span>✦</span>
+  </div>
+
   <div class="intro-content">
+
     <div class="intro-heart">♡</div>
+
     <h1 class="intro-title">for babyyy</h1>
+
+    <div class="intro-subtle"></div>
+
     <button class="enter-btn" onclick="enterWorld()">
       come in
     </button>
+
   </div>
+
 </section>
 
 
-<!-- =========================
-     BEDROOM
-========================= -->
+<!-- =========================================================
+     ROOM
+========================================================= -->
 
 <main id="world">
 
   <div class="room">
 
+    <!-- WINDOW -->
+
     <div class="window">
-      <div class="moon"></div>
-      <span class="star s1">✦</span>
-      <span class="star s2">✦</span>
-      <span class="star s3">✦</span>
-      <span class="star s4">✦</span>
+
+      <div class="window-moon"></div>
+
+      <span class="window-star a">✦</span>
+      <span class="window-star b">✦</span>
+      <span class="window-star c">✦</span>
+      <span class="window-star d">✦</span>
+
     </div>
 
-    <div class="rug"></div>
+
+    <!-- BED -->
 
     <div class="bed">
+
       <div class="headboard"></div>
       <div class="mattress"></div>
       <div class="blanket"></div>
       <div class="pillow"></div>
 
+
       <!-- RIEE -->
+
       <button
-        class="object riee"
+        class="riee"
         onclick="openObject('riee')"
         aria-label="Riee"
       >
-        🧸
-        <span class="object-label">Riee</span>
+
+        <div class="riee-ear left"></div>
+        <div class="riee-ear right"></div>
+
+        <div class="riee-head"></div>
+        <div class="riee-face">⌣</div>
+
+        <div class="riee-body"></div>
+
+        <div class="riee-hood"></div>
+
+        <span class="riee-label">
+          Riee
+        </span>
+
       </button>
+
     </div>
 
-    <!-- BEDSIDE TABLE -->
+
+    <!-- BED SIDE TABLE -->
 
     <div class="table">
+
+      <div class="table-leg left"></div>
+      <div class="table-leg right"></div>
 
       <button
         class="object matcha"
@@ -879,10 +1271,11 @@ button {
         aria-label="matcha"
       >
         🍵
-        <span class="object-label">matcha</span>
+        <span class="obj-label">matcha</span>
       </button>
 
     </div>
+
 
     <!-- MOON LAMP -->
 
@@ -892,8 +1285,9 @@ button {
       aria-label="moon lamp"
     >
       🌙
-      <span class="object-label">moon lamp</span>
+      <span class="obj-label">moon lamp</span>
     </button>
+
 
     <!-- FLOWERS -->
 
@@ -903,8 +1297,9 @@ button {
       aria-label="flowers"
     >
       💐
-      <span class="object-label">flowers</span>
+      <span class="obj-label">flowers</span>
     </button>
+
 
     <!-- HEADPHONES -->
 
@@ -914,8 +1309,9 @@ button {
       aria-label="headphones"
     >
       🎧
-      <span class="object-label">headphones</span>
+      <span class="obj-label">listen</span>
     </button>
+
 
     <!-- CD -->
 
@@ -925,8 +1321,9 @@ button {
       aria-label="CD"
     >
       💿
-      <span class="object-label">a song</span>
+      <span class="obj-label">a song</span>
     </button>
+
 
     <!-- TAPE -->
 
@@ -936,8 +1333,9 @@ button {
       aria-label="voice tape"
     >
       📼
-      <span class="object-label">a little tape</span>
+      <span class="obj-label">from me</span>
     </button>
+
 
     <!-- CAT -->
 
@@ -947,18 +1345,19 @@ button {
       aria-label="cat"
     >
       🐈
-      <span class="object-label">our little world</span>
+      <span class="obj-label">our someday</span>
     </button>
 
-    <!-- CAT ITEM -->
+
+    <!-- CAT PAW -->
 
     <button
       class="object cat-item"
       onclick="openObject('catitem')"
-      aria-label="cat item"
+      aria-label="little things"
     >
       🐾
-      <span class="object-label">little things</span>
+      <span class="obj-label">little things</span>
     </button>
 
   </div>
@@ -966,13 +1365,21 @@ button {
 </main>
 
 
-<!-- =========================
+<!-- =========================================================
      PROGRESS
-========================= -->
+========================================================= -->
 
-<div class="progress" id="progress">
+<div
+  class="progress"
+  id="progress"
+>
   <span id="progressCount">0</span> / 9
 </div>
+
+
+<!-- =========================================================
+     ENDING BUTTON
+========================================================= -->
 
 <button
   class="comet"
@@ -984,11 +1391,14 @@ button {
 </button>
 
 
-<!-- =========================
+<!-- =========================================================
      MODAL
-========================= -->
+========================================================= -->
 
-<div class="modal" id="modal">
+<div
+  class="modal"
+  id="modal"
+>
 
   <div class="modal-card">
 
@@ -1000,22 +1410,34 @@ button {
       ×
     </button>
 
-    <div class="modal-icon" id="modalIcon"></div>
+    <div
+      class="modal-icon"
+      id="modalIcon"
+    ></div>
 
-    <h2 class="modal-title" id="modalTitle"></h2>
+    <h2
+      class="modal-title"
+      id="modalTitle"
+    ></h2>
 
-    <div class="modal-text" id="modalText"></div>
+    <div
+      class="modal-text"
+      id="modalText"
+    ></div>
 
-    <div id="modalExtra"></div>
+    <div
+      class="modal-extra"
+      id="modalExtra"
+    ></div>
 
   </div>
 
 </div>
 
 
-<!-- =========================
-     FINAL
-========================= -->
+<!-- =========================================================
+     FINAL SCENE
+========================================================= -->
 
 <section id="final">
 
@@ -1027,10 +1449,14 @@ button {
 
   <div class="final-content">
 
+    <div class="final-small">
+      someday
+    </div>
+
     <div class="final-message">
 
-      Hello baby, please know that not every part of me is perfect
-      and sometimes I'll get tired too.
+      Hello baby, please know that not every part of me is
+      perfect and sometimes I'll get tired too.
 
       <br><br>
 
@@ -1057,133 +1483,208 @@ button {
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      AUDIO
-========================= -->
+========================================================= -->
 
-<audio id="somdayAudio" preload="none"></audio>
+<audio
+  id="voiceAudio"
+  preload="none"
+></audio>
 
-<audio id="voiceAudio" preload="none"></audio>
+<audio
+  id="somedayAudio"
+  preload="none"
+></audio>
 
 
 <script>
 
 /* =========================================================
-   VOICE RECORDING
-   Your GitHub-hosted recording
+   AUDIO FILES
 ========================================================= */
 
 const voiceURL =
   "https://github.com/jeremiedgzman-a11y/babyyy/raw/refs/heads/main/09-28-2026%2019.58.m4a";
 
-
-/* =========================================================
-   SOMEDAY SONG
-   Upload the song to GitHub later and replace this URL.
-========================================================= */
-
-const somedayURL = "";
+const somedayURL =
+  "https://github.com/jeremiedgzman-a11y/babyyy/raw/refs/heads/main/Someday%20%5B6fgav8cdhSY%5D.m4a";
 
 
 /* =========================================================
-   OBJECT DATA
+   OBJECT CONTENT
 ========================================================= */
 
 const objects = {
 
   riee: {
+
     icon: "🧸",
+
     title: "Riee",
+
     text:
-      "Our sleepy little Riee. He wakes up slowly, looks around, and somehow still has the energy to say the most random things.",
+      "Our sleepy little Riee. Even in this tiny little world, he still somehow manages to wake up with absolutely no idea what's happening.",
+
     extra:
-      "<p style='margin-top:18px;font-style:italic;'>\"baho ng tatay ko\"</p><p style='margin-top:14px;'>And somehow, you end up hugging me anyway. ♡</p>"
+      "<p style='margin-top:18px;font-style:italic;'>\"baho ng tatay ko\"</p>" +
+      "<p style='margin-top:14px;'>And then you hug me anyway.</p>"
+
   },
+
 
   matcha: {
+
     icon: "🍵",
-    title: "matcha",
+
+    title: "a quiet little moment",
+
     text:
-      "I don't think I need a grand moment to know that I love you. Sometimes it's just imagining us sitting somewhere quietly, drinking matcha, talking about random things, and simply being there together."
+      "I don't think I need some huge, perfect moment to know that I love you.",
+
+    extra:
+      "<p style='margin-top:18px;'>Sometimes I imagine us sitting somewhere quietly, drinking matcha, talking about absolutely nothing important.</p>" +
+      "<p style='margin-top:15px;'>Just you being there would already be enough.</p>"
+
   },
+
 
   moonlamp: {
+
     icon: "🌙",
+
     title: "for the nights",
+
     text:
-      "I know there are nights when your mind gets too loud. When you start thinking about what people might think of you, when everything feels stressful, or when you just get irritated because you've had enough.",
+      "I know sometimes your mind gets too loud.",
+
     extra:
-      "<p style='margin-top:18px;'>You don't always have to figure everything out immediately.</p><p style='margin-top:14px;'>You can just stay. I'll listen.</p>"
+      "<p style='margin-top:18px;'>When you're anxious. When you're stressed about what people think. When everything starts getting irritating and you just want to let everything out.</p>" +
+      "<p style='margin-top:16px;'>You don't have to make yourself okay before coming to me.</p>" +
+      "<p style='margin-top:16px;'>I'll listen. I'll stay.</p>"
+
   },
+
 
   flowers: {
+
     icon: "💐",
-    title: "you, exactly as you are",
+
+    title: "you",
+
     text:
       "Babyyy, I want you to know that you're beautiful. Maganda ka and hindi na mababago yun.",
+
     extra:
-      "<p style='margin-top:18px;'>You're always appreciated. Not only for the parts you like about yourself, but for every little imperfection you sometimes wish you could hide.</p><p style='margin-top:16px;'>I love every part of you.</p>"
+      "<p style='margin-top:18px;'>You're always appreciated.</p>" +
+      "<p style='margin-top:15px;'>Not only the parts of yourself that you're proud of, but even the imperfections you sometimes wish you could hide.</p>" +
+      "<p style='margin-top:16px;'>I love every part of you.</p>"
+
   },
+
 
   headphones: {
+
     icon: "🎧",
+
     title: "I'll listen",
+
     text:
-      "When you're anxious, stressed, irritated, or simply tired, you don't have to make yourself okay before coming to me.",
+      "When you're anxious, stressed, irritated, tired, or simply having a bad day, you don't have to carry everything by yourself.",
+
     extra:
-      "<p style='margin-top:18px;'>I'll listen to everything you want to let out.</p><p style='margin-top:14px;'>And if I could, I'd give you my arms to hold onto and just stay there with you until things feel a little lighter.</p>"
+      "<p style='margin-top:18px;'>I'll listen to everything you want to let out.</p>" +
+      "<p style='margin-top:15px;'>And if I could, I'd give you my arms to hold onto and just stay with you until things feel a little lighter.</p>"
+
   },
 
+
   cd: {
+
     icon: "💿",
-    title: "a someday song",
+
+    title: "our someday",
+
     text:
-      "For our someday.",
+      "For that little life we've always imagined.",
+
     extra: `
       <div class="music-card">
-        <button class="music-btn" onclick="playSomeday()">
+        <button
+          class="music-btn"
+          onclick="playSomeday()"
+        >
           ▶ play someday
         </button>
       </div>
-      <p style="margin-top:18px;font-size:13px;opacity:.65;">
+
+      <div class="music-note">
         The Ridleys — Someday
-      </p>
+      </div>
     `
+
   },
 
+
   tape: {
+
     icon: "📼",
-    title: "a little piece of me",
+
+    title: "from me to you",
+
     text:
       "Sometimes I wish I could just sit beside you when you're tired and let you hear me without needing to type everything.",
+
     extra: `
       <div class="music-card">
-        <button class="music-btn" onclick="playVoice()">
+        <button
+          class="music-btn"
+          onclick="playVoice()"
+        >
           ▶ play my voice
         </button>
       </div>
-      <p style="margin-top:18px;font-size:13px;opacity:.65;">
-        just something from me to you ♡
-      </p>
+
+      <div class="music-note">
+        just something from me ♡
+      </div>
     `
+
   },
+
 
   cat: {
+
     icon: "🐈",
+
     title: "our little world",
+
     text:
-      "I think about the life we talk about sometimes.",
+      "This is the kind of someday I think about.",
+
     extra:
-      "<p style='margin-top:18px;'>Waking up. Cooking. Watching something together. Going out. Getting matcha. Taking care of Riee. Taking care of our cats.</p><p style='margin-top:18px;'>Nothing perfect. Just ours.</p>"
+      "<p style='margin-top:18px;'>Waking up. Cooking together. Watching something. Going out. Getting matcha. Taking care of Riee. Taking care of our cats.</p>" +
+      "<p style='margin-top:17px;'>A home that doesn't have to be perfect.</p>" +
+      "<p style='margin-top:17px;'>Just peaceful. Safe. Ours.</p>"
+
   },
 
+
   catitem: {
+
     icon: "🐾",
+
     title: "come here",
+
     text:
-      "You don't have to be perfect here.",
+      "You don't have to have everything figured out here.",
+
     extra:
-      "<p style='margin-top:18px;'>You don't have to have everything figured out.</p><p style='margin-top:14px;'>You can be tired. You can be vulnerable. You can have bad days.</p><p style='margin-top:18px;font-style:italic;'>Let's hold each other and become our own peace.</p>"
+      "<p style='margin-top:18px;'>You can be tired.</p>" +
+      "<p style='margin-top:10px;'>You can be vulnerable.</p>" +
+      "<p style='margin-top:10px;'>You can have bad days.</p>" +
+      "<p style='margin-top:20px;font-style:italic;'>Let's hold each other and become our own peace.</p>"
+
   }
 
 };
@@ -1221,7 +1722,7 @@ const comet =
 
 
 /* =========================================================
-   ENTER
+   ENTER ROOM
 ========================================================= */
 
 function enterWorld() {
@@ -1235,8 +1736,11 @@ function enterWorld() {
     .classList.add("show");
 
   setTimeout(() => {
-    progress.classList.add("visible");
-  }, 1200);
+
+    progress.classList.add("show");
+
+  }, 1500);
+
 }
 
 
@@ -1250,9 +1754,12 @@ function openObject(key) {
 
   if (!data) return;
 
-  modalIcon.innerHTML = data.icon;
+  modalIcon.textContent = data.icon;
+
   modalTitle.textContent = data.title;
+
   modalText.textContent = data.text;
+
   modalExtra.innerHTML = data.extra || "";
 
   modal.classList.add("open");
@@ -1260,6 +1767,7 @@ function openObject(key) {
   explored.add(key);
 
   updateProgress();
+
 }
 
 
@@ -1275,29 +1783,35 @@ function closeModal() {
 
 
 /* =========================================================
-   CLOSE WHEN CLICKING OUTSIDE
+   CLICK OUTSIDE
 ========================================================= */
 
-modal.addEventListener("click", function(event) {
+modal.addEventListener(
+  "click",
+  function(event) {
 
-  if (event.target === modal) {
-    closeModal();
+    if (event.target === modal) {
+      closeModal();
+    }
+
   }
-
-});
+);
 
 
 /* =========================================================
-   ESC KEY
+   ESCAPE
 ========================================================= */
 
-document.addEventListener("keydown", function(event) {
+document.addEventListener(
+  "keydown",
+  function(event) {
 
-  if (event.key === "Escape") {
-    closeModal();
+    if (event.key === "Escape") {
+      closeModal();
+    }
+
   }
-
-});
+);
 
 
 /* =========================================================
@@ -1306,13 +1820,16 @@ document.addEventListener("keydown", function(event) {
 
 function updateProgress() {
 
-  progressCount.textContent = explored.size;
+  progressCount.textContent =
+    explored.size;
 
   if (explored.size >= 9) {
 
     setTimeout(() => {
+
       comet.classList.add("show");
-    }, 700);
+
+    }, 900);
 
   }
 
@@ -1320,7 +1837,25 @@ function updateProgress() {
 
 
 /* =========================================================
-   VOICE
+   STOP OTHER AUDIO
+========================================================= */
+
+function stopAudio() {
+
+  const voice =
+    document.getElementById("voiceAudio");
+
+  const someday =
+    document.getElementById("somedayAudio");
+
+  voice.pause();
+  someday.pause();
+
+}
+
+
+/* =========================================================
+   PLAY VOICE
 ========================================================= */
 
 function playVoice() {
@@ -1328,56 +1863,48 @@ function playVoice() {
   const audio =
     document.getElementById("voiceAudio");
 
-  if (!voiceURL) {
-    alert("Voice recording isn't connected yet.");
-    return;
-  }
+  stopAudio();
 
   audio.src = voiceURL;
 
-  audio.pause();
   audio.currentTime = 0;
 
   audio.load();
 
   audio.play().catch(() => {
+
     alert(
-      "Tap the play button again to start the voice recording."
+      "Tap the play button once more to start the recording."
     );
+
   });
 
 }
 
 
 /* =========================================================
-   SOMEDAY
+   PLAY SOMEDAY
 ========================================================= */
 
 function playSomeday() {
 
   const audio =
-    document.getElementById("somdayAudio");
+    document.getElementById("somedayAudio");
 
-  if (!somedayURL) {
-
-    alert(
-      "The Someday audio isn't connected yet. Upload the song to GitHub first."
-    );
-
-    return;
-  }
+  stopAudio();
 
   audio.src = somedayURL;
 
-  audio.pause();
   audio.currentTime = 0;
 
   audio.load();
 
   audio.play().catch(() => {
+
     alert(
-      "Tap the play button again to start the song."
+      "Tap the play button once more to start the song."
     );
+
   });
 
 }
@@ -1391,33 +1918,13 @@ function showFinal() {
 
   closeModal();
 
-  const final =
-    document.getElementById("final");
+  stopAudio();
 
-  final.classList.add("show");
+  document
+    .getElementById("final")
+    .classList.add("show");
 
 }
-
-
-/* =========================================================
-   STOP AUDIO WHEN FINAL OPENS
-========================================================= */
-
-document
-  .getElementById("final")
-  .addEventListener("click", function() {
-
-    const voice =
-      document.getElementById("voiceAudio");
-
-    const song =
-      document.getElementById("somdayAudio");
-
-    voice.pause();
-    song.pause();
-
-  });
-
 
 </script>
 
